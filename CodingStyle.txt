@@ -1,0 +1,15 @@
+Coding Style for Sorry
+Dominic Stringer and Connor Rajotte
+
+1.) Spacing for level dictation should be 4 spaces (1 tab)
+2.) For conditional statements, both start and end brackets should be on their own line, even if it’s a 1-line statement.
+3.) <<, +, -, and = operators should be spaced out
+4.) *, /, ^, and (), should not be spaced out
+5.) Lists separated by commas or semicolons should be spaced out
+6.) Comments should be on the line before and not tabbed
+7.) Every file should start with a version modification with a name, a list of contents, a general description
+8.) Give one line spacing between segments of code such as functions, class declarations, and #includes/#defines/namespace things
+9.) Pass by reference whenever possible
+10.) Space out segments of code based on Stage in function
+11.) Use camelCase with lowercase start for variable names
+12.) Inline functions longer than 1 line should be built just like a regular function
