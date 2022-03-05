@@ -1,0 +1,45 @@
+Game Board
+
+Slides
+If a pawn ends at the start of a slide, the pawn skids to the end of that slide
+Any pawns in the middle of that slide are sent back to their respective start square
+        
+Safety Zone
+Pawns are safe here because no other player can affect a pawn here
+A player can only enter safety zones matching the color of their pawn from where it joins the open track
+        
+Home
+This is the final destination for your pawns. You can only reach here by an exact count
+        
+Setup
+Choose a color and place the according pawns on the start space
+Each player is dealt 5 unknown cards
+Choose a player to start
+        
+Objective
+Get all 3 pawns to home
+        
+Gameplay
+On each turn, player must select one card from their hand
+Move one of your pawns according to the card
+A new card will be added to your hand
+If a pawn ends on a square that is occupied by another pawn, then the occupying pawn is sent back to its start square
+To move a pawn from your start out onto the open track, you must draw either a 1 or a 2
+If it is a 2, do as it says, then draw again and move if possible
+If at any time you cannot move, you forfeit your turn but otherwise you must move
+Once a pawn has reached HOME, it cannot not move anymore for the rest of the game
+        
+Cards
+1: Move one pawn forward 1 space
+2: Move one pawn forward 2 spaces
+3: Move one pawn forward 3 spaces
+4: Move one pawn backwards 4 spaces
+5: Move one pawn forward 5 spaces
+7: Move one pawn forward 7 spaces or split the forward move between any two pawns
+8: Move one pawn forward 8 spaces
+10: Move one pawn forward 10 spaces or move one pawn 1 space backwards
+11: Move one pawn forward 11 spaces or switch any of your pawns with one of any of your opponent's
+12: Move one pawn forward 12 spaces
+        
+End of Game
+The first player who get all 3 pawns on their HOME wins the game
