@@ -19,12 +19,11 @@
  *  Card12 Class
  *********************************/
 
-#include "board.cpp"
 #include "board.h"
 #include <iostream>
 using namespace std;
 
 int main() {
-    Board Sorry;
+    Board Sorry("standard");
     Sorry.displayBoard();
 }

@@ -9,6 +9,7 @@
  *********************************/
 
 #include "board.h"
+#include <fstream>
 #include <iostream>
 using namespace std;
 
@@ -46,7 +47,14 @@ Board::Board(string rules) {
     boardTiles[58] = 6;
 }
 
+#define GREEN "\033[32m"
+
 void Board::displayBoard() {
-    for (int i = 0; i < 4; ++i)
-        cout << "[ ] [ ] [ ] [ ]" << endl;
+    ifstream fin("board.txt");
+    string buffer;
+    for (int i = 0; i < 1000; i++) {
+        fin >> buffer;
+        cout << buffer;
+    }
+    fin.close();
 }

@@ -9,12 +9,11 @@
  *   
  *********************************/
 
-#ifndef Board
-#define Board
-
-/* #pragma once */
+#ifndef BOARD
+#define BOARD
 
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 class Board {
