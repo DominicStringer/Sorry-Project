@@ -9,6 +9,7 @@
  *********************************/
 
 #include "board.h"
+#include <stdlib.h>
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -48,13 +49,56 @@ Board::Board(string rules) {
 }
 
 #define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define RED "\033[31m"
+#define WHITE "\033[37m"
 
 void Board::displayBoard() {
     ifstream fin("board.txt");
-    string buffer;
-    for (int i = 0; i < 1000; i++) {
-        fin >> buffer;
-        cout << buffer;
+    char nextNextBuffer = '0';
+    char nextBuffer = '0';
+    char buffer = '0';
+    char prevBuffer = '0';
+    char prevPrevBuffer = '0';
+    int count = 0;
+    int wait = 0;
+    while (fin.get(buffer)) {
+        ++count;
+        nextBuffer = fin.peek();
+        fin.get();
+        nextNextBuffer = fin.peek();
+        fin.putback(nextBuffer);
+        if ((buffer == '-' || buffer == '>' || buffer == 'o') && count <= 151) {
+            cout << BLUE;
+            cout << buffer;
+            cout << WHITE;
+        }
+        else if ((buffer == -95 && prevBuffer == -106 && prevPrevBuffer == -30) || 
+                 (nextBuffer == -95 && buffer == -106 && prevBuffer == -30) ||
+                 (nextNextBuffer == -95 && nextBuffer == -106 && buffer == -30)) {
+            if (wait == 0)
+                cout << GREEN;
+            cout << buffer;
+            ++wait;
+        }
+        else
+            cout << buffer;
+        if (wait == 2) {
+            cout << WHITE;
+            wait = 0;
+        }
+        prevPrevBuffer = prevBuffer;
+        prevBuffer = buffer;
     }
+    char test[4] = "□";
+    cout << GREEN;
+    cout << test[0];
+    cout << WHITE;
+    cout << GREEN;
+    cout << test[1];
+    cout << WHITE;
+    cout << GREEN;
+    cout << test[2] << endl;
     fin.close();
 }
