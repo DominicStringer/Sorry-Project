@@ -59,12 +59,58 @@ void Board::displayBoard() {
     int i = 0;
     char buffer = '0';
     while (fin.get(buffer)) {
-        ++i;
         switch (i) {
-            default:
-                cout << buffer;
+            case 137:
+            case 163:
+            case 210:
+            case 312:
+            case 390:
+            case 490:
+            case 546:
+            case 657:
+            case 738:
+            case 814:
+            case 890:
+                cout << RED;
+                break;
+            case 232:
+            case 330:
+            case 408:
+            case 508:
+            case 570:
+                cout << BLUE;
+                break;
+            case 310:
+            case 388:
+            case 488:
+            case 544:
+            case 652:
+                cout << GREEN;
+                break;
+            case 680:
+            case 769:
+            case 830:
+            case 920:
+                cout << YELLOW;
+                break;
+            case 148:
+            case 175:
+            case 229:
+            case 288:
+            case 366:
+            case 456:
+            case 535:
+            case 617:
+            case 708:
+            case 763:
+            case 785:
+            case 860:
+            case 943:
+                cout << WHITE;
                 break;
         }
+        cout << buffer;
+        ++i;
     }
     cout << endl;
     fin.close();
