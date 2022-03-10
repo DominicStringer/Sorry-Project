@@ -56,49 +56,16 @@ Board::Board(string rules) {
 
 void Board::displayBoard() {
     ifstream fin("board.txt");
-    char nextNextBuffer = '0';
-    char nextBuffer = '0';
+    int i = 0;
     char buffer = '0';
-    char prevBuffer = '0';
-    char prevPrevBuffer = '0';
-    int count = 0;
-    int wait = 0;
     while (fin.get(buffer)) {
-        ++count;
-        nextBuffer = fin.peek();
-        fin.get();
-        nextNextBuffer = fin.peek();
-        fin.putback(nextBuffer);
-        if ((buffer == '-' || buffer == '>' || buffer == 'o') && count <= 151) {
-            cout << BLUE;
-            cout << buffer;
-            cout << WHITE;
+        ++i;
+        switch (i) {
+            default:
+                cout << buffer;
+                break;
         }
-        else if ((buffer == -95 && prevBuffer == -106 && prevPrevBuffer == -30) || 
-                 (nextBuffer == -95 && buffer == -106 && prevBuffer == -30) ||
-                 (nextNextBuffer == -95 && nextBuffer == -106 && buffer == -30)) {
-            if (wait == 0)
-                cout << GREEN;
-            cout << buffer;
-            ++wait;
-        }
-        else
-            cout << buffer;
-        if (wait == 2) {
-            cout << WHITE;
-            wait = 0;
-        }
-        prevPrevBuffer = prevBuffer;
-        prevBuffer = buffer;
     }
-    char test[4] = "□";
-    cout << GREEN;
-    cout << test[0];
-    cout << WHITE;
-    cout << GREEN;
-    cout << test[1];
-    cout << WHITE;
-    cout << GREEN;
-    cout << test[2] << endl;
+    cout << endl;
     fin.close();
 }
