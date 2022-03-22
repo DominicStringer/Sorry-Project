@@ -24,6 +24,6 @@
 using namespace std;
 
 int main() {
-    Board Sorry("standard");
+    Board Sorry;
     Sorry.displayBoard();
 }

@@ -19,14 +19,18 @@ using namespace std;
 class Board {
     private:
         int boardTiles[60];
-        string rules;
     public:
-        Board(string rules = "standard");
-        /* checkSpecialEvents */
-        /* landedOnEnemy */
-        /* landedOnSelf */
-        /* landedOnSlider */
-        /* ranOverSafetyZone */
+        Board();
+        int checkEvent(int current, int move);
+        void landedOnEnemy();
+        void landedOnSelf();
+        void landedOnSlider();
+        void goInSafety();
+        void goOutOfHome();
+        void returnHome();
+        void goToEnd();
+        void changeTile();
+        void swap()
         void displayBoard();
 };
 
