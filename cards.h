@@ -1,6 +1,7 @@
 /*********************************
  * File Changes:
  *  Dominic - 3/1/2022
+ *  Dominic - 3/22/2022
  * 
  * Description: 
  *
@@ -19,10 +20,21 @@
  *  Card12 Class
  *********************************/
 
-class Card {
-    private:
-        int numInDeck;
+#ifndef CARDS
+#define CARDS
+
+#include <time.h>
+
+class Cards {
+    public:
+        int getCard();
+        void writeCardToBoard();
 };
+
+int getCard() {
+    srand(time(NULL));
+    int draw = rand();
+}
 
 class CardSorry : public Card {
     public:
@@ -78,3 +90,5 @@ class Card12 : public Card {
     public:
         Card12() {numInDeck = 4;}
 }
+
+#endif
