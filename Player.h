@@ -1,3 +1,13 @@
+/*********************************
+ * File Changes:
+ *  Connor - 3/22/2022
+ * 
+ * Description: Player Class
+ *
+ * List of Contents:
+ *  Player Class
+ *   
+ *********************************/
 #include <iostream>
 #include <fstream>
 #include <string>
