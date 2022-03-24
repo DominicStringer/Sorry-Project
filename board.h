@@ -20,18 +20,15 @@ using namespace std;
 class Board {
     private:
         int boardTiles[60];
+        int playerTiles[60];
     public:
         Board();
-        int checkEvent(int current, int move);
-        void landedOnEnemy();
-        void landedOnSelf();
-        void landedOnSlider();
-        void goInSafety();
-        void goOutOfHome();
-        void returnHome();
-        void goToEnd();
-        void changeTile();
-        void swap()
+        int doEvents(int playerNum, int current, int move);
+        int loopLanded(int landed);
+        int onEnemy(int playerNum, int landed);
+        bool onSelf(int playerNum, int landed);
+        bool onSlider(int landed);
+        bool inSafety(int playerNum, int current, int move);
         void displayBoard();
 };
 

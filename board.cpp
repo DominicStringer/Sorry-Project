@@ -20,6 +20,7 @@ using namespace std;
 Board::Board() {
     for (int i = 0; i < 60; ++i) {
         boardTiles[i] = 0;
+        playerTiles[i] = 0;
     }
 
     /* 1: Green Home
@@ -49,6 +50,57 @@ Board::Board() {
     boardTiles[49] = 6;
     boardTiles[54] = 5;
     boardTiles[58] = 6;
+}
+
+int Board::doEvents(int playerNum, int current, int move) {
+    int status = 0;
+    int landed = current + move;
+    return status;
+}
+
+int Board::onEnemy(int playerNum, int landed) {
+    if (playerTiles[landed] != 0 && playerTiles[landed] != playerNum)
+        return 1;
+    return 0;
+}
+
+bool Board::onSelf(int playerNum, int landed) {
+    if (playerTiles[landed] == playerNum)
+        return 1;
+    return 0;
+}
+
+bool Board::onSlider(int landed) {
+    if (boardTiles[landed] == 5)
+        return 1;
+    return 0;    
+}
+
+bool Board::inSafety(int playerNum, int current, int move) {
+    int safetyEntry = 0;
+    switch (playerNum) {
+        case 1:
+            safetyEntry = 2;
+            break;
+        case 2:
+            safetyEntry = 17;
+            break;
+        case 3:
+            safetyEntry = 32;
+            break;
+        case 4:
+            safetyEntry = 47;
+            break;
+    }
+    int landed = current + move;
+    landed = loopLanded(landed);
+    return 0;
+}
+
+int Board::loopLanded(int landed) {
+    if (landed > 59)
+        landed -= 60;
+    return landed;
 }
 
 #define GREEN "\033[32m"
