@@ -2,14 +2,25 @@
  * File Changes:
  *  Dominic - 3/3/2022
  *  Dominic - 3/22/2022
+ *  Dominic - 3/27/2022
+ *  Dominic - 3/28/2022
  * 
  * Description: Sorry Board Functions
  *
  * List of Contents:
- *  
+ *   - Board()
+ *   - movePawn()
+ *   - onEnemy()
+ *   - onSelf()
+ *   - onSlider()
+ *   - inSafety()
+ *   - loopLanded()
+ *   - getSafetyEntry()
+ *   - displayBoard()
  *********************************/
 
 #include "board.h"
+#include "pawn.h"
 #include <stdlib.h>
 #include <fstream>
 #include <iostream>
@@ -21,6 +32,11 @@ Board::Board() {
     for (int i = 0; i < 60; ++i) {
         boardTiles[i] = 0;
         playerTiles[i] = 0;
+    }
+
+    for (int i = 0; i < 12; ++i) {
+        Pawn pawn;
+        pawn[i] = pawn;
     }
 
     /* 1: Green Home
@@ -52,20 +68,56 @@ Board::Board() {
     boardTiles[58] = 6;
 }
 
-int Board::doEvents(int playerNum, int current, int move) {
-    int status = 0;
-    int landed = current + move;
-    return status;
+bool Board::movePawn(int pawnNum, int move) {
+    bool moved = false;
+    int landed =  pawn[pawnNum].getPos() + move;
+
+
+    switch (pawn[pawnNum].status)
+        case 0:
+            
+
+
+
+
+
+
+
+
+
+
+
+
+    if (!onSelf(pawnNum, landed)) {
+        int safeTile = inSafety(pawnNum, landed, pawn[pawnNum].getPos())
+        if (!safeTile) {
+            if (onEnemy(pawnNum, landed)) {
+                pawn[pawnTile[landed]].status = 0;
+            }
+            if (onSlider(landed)) {
+                while (!onSliderEnd(landed)) {
+                    landed++;
+                    if (onEnemy(pawnNum, landed)
+                        pawn[pawnTile[landed]].status = 0;
+                }
+            }
+        }
+        else if (safeTile != -1) {
+            pawn[pawnNum].status = 2;
+            pawn[pawnNum].position = safeTile;
+        }
+    }
+    return moved;
 }
 
-int Board::onEnemy(int playerNum, int landed) {
-    if (playerTiles[landed] != 0 && playerTiles[landed] != playerNum)
+int Board::onEnemy(int pawnNum, int landed) {
+    if (pawnTile[landed] != 0 && pawnTile[landed] != pawnNum)
         return 1;
     return 0;
 }
 
-bool Board::onSelf(int playerNum, int landed) {
-    if (playerTiles[landed] == playerNum)
+bool Board::onSelf(int pawnNum, int landed) {
+    if (pawnNum % 3 == pawnTile[landed] % 3)
         return 1;
     return 0;
 }
@@ -76,7 +128,13 @@ bool Board::onSlider(int landed) {
     return 0;    
 }
 
-bool Board::inSafety(int playerNum, int current, int move) {
+bool Board::onSliderEnd(int landed) {
+    if (boardTiles[landed] == 6)
+        return 1;
+    return 0;
+}
+
+int Board::inSafety(int playerNum, int landed, int current) {
     int safetyEntry = 0;
     switch (playerNum) {
         case 1:
@@ -92,8 +150,11 @@ bool Board::inSafety(int playerNum, int current, int move) {
             safetyEntry = 47;
             break;
     }
-    int landed = current + move;
-    landed = loopLanded(landed);
+    if (landed > safetyEntry && current < safetyEntry) {
+        if (landed < safetyEntry + 5)
+            return (safetyEntry + 5) - landed;
+        return -1;
+    }
     return 0;
 }
 
@@ -101,6 +162,12 @@ int Board::loopLanded(int landed) {
     if (landed > 59)
         landed -= 60;
     return landed;
+}
+
+int Board::getSafetyEntry(int pawnNum) {
+    switch (color) {
+        case 0:
+    }
 }
 
 #define GREEN "\033[32m"

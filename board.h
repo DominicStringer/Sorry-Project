@@ -13,6 +13,7 @@
 #ifndef BOARD
 #define BOARD
 
+#include "pawn.h"
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -21,14 +22,16 @@ class Board {
     private:
         int boardTiles[60];
         int playerTiles[60];
+        Pawn pawn[12];
     public:
         Board();
-        int doEvents(int playerNum, int current, int move);
-        int loopLanded(int landed);
-        int onEnemy(int playerNum, int landed);
-        bool onSelf(int playerNum, int landed);
+        int movePawn(int pawnNum, int move);
+        bool onEnemy(int pawnNum, int landed);
+        bool onSelf(int pawnNum, int landed);
         bool onSlider(int landed);
-        bool inSafety(int playerNum, int current, int move);
+        bool inSafety(int pawnNum, int current, int move);
+        int loopLanded(int landed);
+        int getSafetyEntry(int pawnNum);
         void displayBoard();
 };
 
