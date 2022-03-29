@@ -19,7 +19,7 @@ class Pawn {
         int status; /* 0 - in Start, 1 - on Board, 2 - in Safety, 3 - in Home */
         int position;
     public:
-        Pawn() {position = 0; status = 0}
+        Pawn() {position = 0; status = 0;}
         void setPos(int newPosition) {position = newPosition;}
         int getPos() {return position;}
         void setStatus(int newStatus) {status = newStatus;}

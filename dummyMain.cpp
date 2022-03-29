@@ -26,4 +26,7 @@ using namespace std;
 int main() {
     Board Sorry;
     Sorry.displayBoard();
+    cout << Sorry.movePawn(0, 10) << endl;
+    cout << Sorry.movePawn(1, 10) << endl;
+    cout << Sorry.movePawn(0, 10) << endl;
 }

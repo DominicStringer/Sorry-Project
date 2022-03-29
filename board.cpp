@@ -31,12 +31,12 @@ using namespace std;
 Board::Board() {
     for (int i = 0; i < 60; ++i) {
         boardTiles[i] = 0;
-        playerTiles[i] = 0;
+        pawnTiles[i] = -3;
     }
 
     for (int i = 0; i < 12; ++i) {
-        Pawn pawn;
-        pawn[i] = pawn;
+        Pawn newPawn;
+        pawn[i] = newPawn;
     }
 
     /* 1: Green Home
@@ -46,113 +46,145 @@ Board::Board() {
      * 5: Slider Start
      * 6: Slider End */
 
-    boardTiles[1] = 5;
-    boardTiles[2] = 1; /* Green Home */
-    boardTiles[4] = 6;
-    boardTiles[9] = 5;
-    boardTiles[13] = 6;
-    boardTiles[16] = 5;
-    boardTiles[17] = 2; /* Red Home */
-    boardTiles[19] = 6;
-    boardTiles[24] = 5;
-    boardTiles[28] = 6;
-    boardTiles[31] = 5;
-    boardTiles[32] = 3; /* Blue Home */
-    boardTiles[34] = 6;
-    boardTiles[39] = 5;
-    boardTiles[43] = 6;
-    boardTiles[46] = 5;
-    boardTiles[47] = 4; /* Yellow Home */
-    boardTiles[49] = 6;
-    boardTiles[54] = 5;
-    boardTiles[58] = 6;
+    boardTiles[1] = 1;
+    boardTiles[4] = 2;
+    boardTiles[9] = 1;
+    boardTiles[13] = 2;
+    boardTiles[16] = 1;
+    boardTiles[19] = 2;
+    boardTiles[24] = 1;
+    boardTiles[28] = 2;
+    boardTiles[31] = 1;
+    boardTiles[34] = 2;
+    boardTiles[39] = 1;
+    boardTiles[43] = 2;
+    boardTiles[46] = 1;
+    boardTiles[49] = 2;
+    boardTiles[54] = 1;
+    boardTiles[58] = 2;
 }
 
 bool Board::movePawn(int pawnNum, int move) {
     bool moved = false;
     int landed =  pawn[pawnNum].getPos() + move;
-
-
-    switch (pawn[pawnNum].status)
+    int safe = 0;
+    landed = loopLanded(landed);
+    switch (pawn[pawnNum].getStatus()) {
         case 0:
-            
-
-
-
-
-
-
-
-
-
-
-
-
-    if (!onSelf(pawnNum, landed)) {
-        int safeTile = inSafety(pawnNum, landed, pawn[pawnNum].getPos())
-        if (!safeTile) {
-            if (onEnemy(pawnNum, landed)) {
-                pawn[pawnTile[landed]].status = 0;
-            }
-            if (onSlider(landed)) {
-                while (!onSliderEnd(landed)) {
-                    landed++;
-                    if (onEnemy(pawnNum, landed)
-                        pawn[pawnTile[landed]].status = 0;
+            cout << "In Start" << endl;
+            pawn[pawnNum].setPos(getStart(pawnNum));
+            landed = pawn[pawnNum].getPos() + move;
+            landed = loopLanded(landed);
+        case 1:
+            cout << "On Board" << endl;
+            safe = inSafety(pawnNum, landed, pawn[pawnNum].getPos());
+            if (!safe)
+                moved = doMove(pawnNum, landed);
+                pawn[pawnNum].setStatus(1);
+            if (safe > 0)
+                if (!onSafeSelf(pawnNum, landed)) {
+                    pawn[pawnNum].setStatus(2);
+                    pawn[pawnNum].setPos(safe);
+                    moved = true;
                 }
+            break;
+        case 2:
+            cout << "In Safety" << endl;
+            if (landed < 5 && !onSafeSelf(pawnNum, landed)) {
+                /* Moved Forward */
             }
-        }
-        else if (safeTile != -1) {
-            pawn[pawnNum].status = 2;
-            pawn[pawnNum].position = safeTile;
-        }
+            else if (landed < 0) {
+                /* Backed out */
+            }
+            else if (landed == 5) {
+                /* Reached end */
+            }
+            break;
+        case 3:
+            cout << "In Home" << endl;
+            break;
     }
     return moved;
 }
 
-int Board::onEnemy(int pawnNum, int landed) {
-    if (pawnTile[landed] != 0 && pawnTile[landed] != pawnNum)
+bool Board::doMove(int pawnNum, int landed) {
+    bool moved = false;
+    if (!onSelf(pawnNum, landed)) {
+        if (onEnemy(pawnNum, landed)) {
+            pawn[pawnTiles[landed]].setStatus(0);
+            pawnTiles[landed] = 0;
+        }
+        if (onSlider(landed)) {
+            while (!onSliderEnd(landed)) {
+                landed++;
+                landed = loopLanded(landed);
+                if (onEnemy(pawnNum, landed)) {
+                    pawn[pawnTiles[landed]].setStatus(0);
+                    pawnTiles[landed] = 0;
+                }
+            }
+        }
+        pawn[pawnNum].setStatus(1);
+        pawn[pawnNum].setPos(landed);
+        pawnTiles[landed] = pawnNum;
+        moved = true;
+    }
+    return moved;
+}
+
+bool Board::onSafeSelf(int pawnNum, int landed) {
+    switch (pawnNum % 3) {
+        case 0:
+            if (pawn[pawnNum + 1].getStatus() == 2 && pawn[pawnNum + 1].getPos() == pawn[pawnNum].getPos())
+                return 1;
+            else if (pawn[pawnNum + 2].getStatus() == 2 && pawn[pawnNum + 2].getPos() == pawn[pawnNum].getPos())
+                return 1;
+            break;
+        case 1:
+            if (pawn[pawnNum - 1].getStatus() == 2 && pawn[pawnNum - 1].getPos() == pawn[pawnNum].getPos())
+                return 1;
+            else if (pawn[pawnNum + 1].getStatus() == 2 && pawn[pawnNum + 1].getPos() == pawn[pawnNum].getPos())
+                return 1;
+            break;
+        case 2:
+            if (pawn[pawnNum - 2].getStatus() == 2 && pawn[pawnNum - 2].getPos() == pawn[pawnNum].getPos())
+                return 1;
+            else if (pawn[pawnNum - 1].getStatus() == 2 && pawn[pawnNum - 1].getPos() == pawn[pawnNum].getPos())
+                return 1;
+            break;
+    }
+    return 0;
+}
+
+bool Board::onEnemy(int pawnNum, int landed) {
+    if (pawnTiles[landed] != -1 && pawnTiles[landed] / 3 != pawnNum / 3)
         return 1;
     return 0;
 }
 
 bool Board::onSelf(int pawnNum, int landed) {
-    if (pawnNum % 3 == pawnTile[landed] % 3)
+    if (pawnNum / 3 == pawnTiles[landed] / 3)
         return 1;
     return 0;
 }
 
 bool Board::onSlider(int landed) {
-    if (boardTiles[landed] == 5)
+    if (boardTiles[landed] == 1)
         return 1;
     return 0;    
 }
 
 bool Board::onSliderEnd(int landed) {
-    if (boardTiles[landed] == 6)
+    if (boardTiles[landed] == 2)
         return 1;
     return 0;
 }
 
 int Board::inSafety(int playerNum, int landed, int current) {
-    int safetyEntry = 0;
-    switch (playerNum) {
-        case 1:
-            safetyEntry = 2;
-            break;
-        case 2:
-            safetyEntry = 17;
-            break;
-        case 3:
-            safetyEntry = 32;
-            break;
-        case 4:
-            safetyEntry = 47;
-            break;
-    }
-    if (landed > safetyEntry && current < safetyEntry) {
-        if (landed < safetyEntry + 5)
-            return (safetyEntry + 5) - landed;
+    int safety = getSafety(playerNum);
+    if (landed > safety && current < safety) {
+        if (landed < safety + 5)
+            return (safety + 5) - landed;
         return -1;
     }
     return 0;
@@ -164,10 +196,42 @@ int Board::loopLanded(int landed) {
     return landed;
 }
 
-int Board::getSafetyEntry(int pawnNum) {
-    switch (color) {
+int Board::getSafety(int playerNum) {
+    int safety = 0;
+    switch(playerNum / 3) {
         case 0:
+            safety = 2;
+            break;
+        case 1:
+            safety = 17;
+            break;
+        case 2:
+            safety = 32;
+            break;
+        case 3:
+            safety = 47;
+            break;
     }
+    return safety;
+}
+
+int Board::getStart(int playerNum) {
+    int start = 0;
+    switch (playerNum / 3) {
+        case 0:
+            start = 4;
+            break;
+        case 1:
+            start = 19;
+            break;
+        case 2:
+            start = 34;
+            break;
+        case 3:
+            start = 49;
+            break;
+    }
+    return start;
 }
 
 #define GREEN "\033[32m"

@@ -21,17 +21,21 @@ using namespace std;
 class Board {
     private:
         int boardTiles[60];
-        int playerTiles[60];
+        int pawnTiles[60];
         Pawn pawn[12];
     public:
         Board();
-        int movePawn(int pawnNum, int move);
+        bool movePawn(int pawnNum, int move);
+        bool doMove(int pawnNum, int move);
         bool onEnemy(int pawnNum, int landed);
+        bool onSafeSelf(int pawnNum, int landed);
         bool onSelf(int pawnNum, int landed);
         bool onSlider(int landed);
-        bool inSafety(int pawnNum, int current, int move);
+        bool onSliderEnd(int landed);
+        int inSafety(int pawnNum, int current, int move);
         int loopLanded(int landed);
-        int getSafetyEntry(int pawnNum);
+        int getSafety(int pawnNum);
+        int getStart(int pawnNum);
         void displayBoard();
 };
 
