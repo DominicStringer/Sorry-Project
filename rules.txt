@@ -7,14 +7,15 @@ Any pawns in the middle of that slide are sent back to their respective start sq
 Safety Zone
 Pawns are safe here because no other player can affect a pawn here
 A player can only enter safety zones matching the color of their pawn from where it joins the open track
+No pawn may enter its safety zone by a backward move. However, a pawn may move backward out of its safety zone
         
 Home
-This is the final destination for your pawns. You can only reach here by an exact count
+This is the final destination for your pawns You can only reach here by an exact count
         
 Setup
-Choose a color and place the according pawns on the start space
+Place the according pawns on the start space
 Each player is dealt 5 unknown cards
-Choose a player to start
+Youngest player starts
         
 Objective
 Get all 3 pawns to home
@@ -40,6 +41,7 @@ Cards
 10: Move one pawn forward 10 spaces or move one pawn 1 space backwards
 11: Move one pawn forward 11 spaces or switch any of your pawns with one of any of your opponent's
 12: Move one pawn forward 12 spaces
+Sorry!: Take any one pawn from Start and move it directly to a square occupied by any opponent's pawn sending that pawn back to its own Start
         
 End of Game
 The first player who get all 3 pawns on their HOME wins the game
