@@ -12,7 +12,6 @@
 
 int main() {
     Board sorryBoard;
-    sorryBoard.movePawn(1,20);
     sorryBoard.displayBoard();
     return 0;
 }

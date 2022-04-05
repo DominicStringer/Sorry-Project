@@ -2,6 +2,7 @@
  * File Changes:
  *  Dominic - 3/1/2022
  *  Dominic - 3/22/2022
+ *  Dominic - 4/4/22
  * 
  * Description: The Sorry Board Class with Function Declarations
  *
@@ -65,12 +66,10 @@ class Board {
             landed = loopLanded(landed);
             switch (pawn[pawnNum].getStatus()) {
                 case 0:
-                    cout << "In Start" << endl;
                     pawn[pawnNum].setPos(getStart(pawnNum));
                     landed = pawn[pawnNum].getPos() + move - 1;
                     landed = loopLanded(landed);
                 case 1:
-                    cout << "On Board" << endl;
                     safe = inSafety(pawnNum, landed, pawn[pawnNum].getPos());
                     if (!safe)
                         moved = doMove(pawnNum, landed);
@@ -83,7 +82,6 @@ class Board {
                         }
                     break;
                 case 2:
-                    cout << "In Safety" << endl;
                     if (landed < 5 && !onSafeSelf(pawnNum, landed)) {
                         /* Moved Forward */
                     }
@@ -95,7 +93,6 @@ class Board {
                     }
                     break;
                 case 3:
-                    cout << "In Home" << endl;
                     break;
             }
             return moved;
@@ -105,7 +102,7 @@ class Board {
             if (!onSelf(pawnNum, landed)) {
                 if (onEnemy(pawnNum, landed)) {
                     pawn[pawnTiles[landed]].setStatus(0);
-                    pawnTiles[landed] = 0;
+                    pawnTiles[landed] = -3;
                 }
                 if (onSlider(landed)) {
                     while (!onSliderEnd(landed)) {
@@ -113,9 +110,10 @@ class Board {
                         landed = loopLanded(landed);
                         if (onEnemy(pawnNum, landed)) {
                             pawn[pawnTiles[landed]].setStatus(0);
-                            pawnTiles[landed] = 0;
+                            pawnTiles[landed] = -3;
                         }
                     }
+                  
                 }
                 pawn[pawnNum].setStatus(1);
                 pawn[pawnNum].setPos(landed);
@@ -150,7 +148,7 @@ class Board {
         }
         
         bool onEnemy(int pawnNum, int landed) {
-            if (pawnTiles[landed] != -1 && pawnTiles[landed] / 3 != pawnNum / 3)
+            if (pawnTiles[landed] != -3 && pawnTiles[landed] / 3 != pawnNum / 3)
                 return 1;
             return 0;
         }
@@ -337,9 +335,12 @@ class Board {
                     case 206:
                     case 284:
                     case 310:
+                    case 364:
+                    case 388:
                         currentTile = getTileFromi(i);
-                        if (pawnTiles[currentTile] != -3) {
-                            switch (pawnTiles[k] / 3) {
+                        /* if (pawnTiles[currentTile] != -3) { */
+                        if (true) {
+                            switch (pawnTiles[currentTile] / 3) {
                                 case 0:
                                     cout << GREEN;
                                     break;
@@ -353,7 +354,8 @@ class Board {
                                     cout << YELLOW;
                                     break;
                             }
-                            switch(pawnTiles[k] % 3) {
+                            cout << WHITE;
+                            switch(pawnTiles[currentTile] % 3) {
                                 case 0:
                                     cout << "①" << WHITE;
                                     break;
@@ -367,6 +369,29 @@ class Board {
                             prnt = false;
                         }
                         ++k;
+                        break;
+                    case 316: /* RED SAFETY */
+                    case 394:
+                        cout << "■";
+                        prnt = false;
+                        break;
+                    case 324: /* RED START */
+                    case 402:
+                        cout << "■";
+                        prnt = false;
+                        break;
+                    case 334: /* BLUE HOME */
+                    case 412:
+                        cout << "■";
+                        prnt = false;
+                        break;
+                    case 340: /* BLUE SAFETY */
+                    case 344:
+                    case 348:
+                    case 352:
+                    case 356:
+                        cout << "■";
+                        prnt = false;
                         break;
                     case 137:
                     case 141:
@@ -387,6 +412,19 @@ class Board {
                     case 209:
                     case 287:
                     case 311:
+                    case 319:
+                    case 325:
+                    case 335:
+                    case 343:
+                    case 347:
+                    case 351:
+                    case 355:
+                    case 359:
+                    case 365:
+                    case 389:
+                    case 397:
+                    case 403:
+                    case 413:
                         prnt = true;
                         break;
                 }
