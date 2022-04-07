@@ -4,6 +4,7 @@
  *  Dominic - 3/22/2022
  *  Dominic - 4/4/2022
  *  Dominic - 4/6/2022
+ *  Dominic - 4/7/2022
  * 
  * Description: The Sorry Board Class with Function Declarations
  *
@@ -149,150 +150,19 @@ class Board {
                         cout << WHITE;
                         break;
                 }
+                currentTile = getTileFromi(i);
+                if (currentTile >= 0 && currentTile < 60)
+                {
+                    if (pawnTiles[currentTile] != -3)
+                    {
+                        prntPawn(pawnTiles[currentTile]);
+                        prnt = false;
+                    }
+                }
+                else if (currentTile >= 60)
+                {
+                }
                 switch (i) {
-                    case 134:
-                    case 138:
-                    case 142:
-                    case 144:
-                    case 146:
-                    case 148:
-                    case 152:
-                    case 156:
-                    case 160:
-                    case 164:
-                    case 168:
-                    case 170:
-                    case 172:
-                    case 174:
-                    case 176:
-                    case 180:
-                    case 206:
-                    case 284:
-                    case 310:
-                    case 364:
-                    case 388:
-                    case 454:
-                    case 488:
-                    case 534:
-                    case 545:
-                    case 617:
-                    case 653:
-                    case 709:
-                    case 735:
-                    case 785:
-                    case 811:
-                    case 861:
-                    case 887:
-                    case 943:
-                    case 979:
-                    case 1053:
-                    case 1064:
-                    case 1110:
-                    case 1121:
-                    case 1187:
-                    case 1198:
-                    case 1252:
-                    case 1263:
-                    case 1341:
-                    case 1354:
-                    case 1358:
-                    case 1362:
-                    case 1364:
-                    case 1366:
-                    case 1368:
-                    case 1370:
-                    case 1374:
-                    case 1378:
-                    case 1382:
-                    case 1386:
-                    case 1390:
-                    case 1392:
-                    case 1394:
-                    case 1396:
-                    case 1400:
-                        currentTile = getTileFromi(i);
-                        prnt = placePawn(currentTile);
-                        break;
-                    case 316: /* RED SAFETY */
-                    case 394:
-                    case 494:
-                    case 551:
-                    case 661:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 324: /* RED START */
-                    case 402:
-                    case 502:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 819: /* RED HOME*/
-                    case 821:
-                    case 823:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 334: /* BLUE HOME */
-                    case 412:
-                    case 512:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 340: /* BLUE SAFETY */
-                    case 344:
-                    case 348:
-                    case 352:
-                    case 356:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 524: /* BLUE START */
-                    case 526:
-                    case 528:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 775: /* YELLOW HOME */
-                    case 777:
-                    case 779:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 935: /* YELLOW SAFETY */
-                    case 1045:
-                    case 1102:
-                    case 1179:
-                    case 1244:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 1096: /* YELLOW START */
-                    case 1173:
-                    case 1238:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 1070: /* GREEN START */
-                    case 1072:
-                    case 1074:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 1086: /* GREEN HOME */
-                    case 1163:
-                    case 1228:
-                        cout << "■";
-                        prnt = false;
-                        break;
-                    case 1204: /* GREEN SAFETY */
-                    case 1208:
-                    case 1212:
-                    case 1216:
-                    case 1220:
-                        cout << "■";
-                        prnt = false;
-                        break;
                     case 137:
                     case 141:
                     case 143:
@@ -755,40 +625,167 @@ class Board {
                 case 1400:
                     tile = 45;
                     break;
+                case 1070: /* GREEN START */
+                    tile = 60;
+                    break;
+                case 1072:
+                    tile = 61;
+                    break;
+                case 1074:
+                    tile = 62;
+                    break;
+                case 1204: /* GREEN SAFETY */
+                    tile = 63;
+                    break;
+                case 1208:
+                    tile = 64;
+                    break;
+                case 1212:
+                    tile = 65;
+                    break;
+                case 1216:
+                    tile = 66;
+                    break;
+                case 1220:
+                    tile = 67;
+                    break;
+                case 1086: /* GREEN HOME */
+                    tile = 68;
+                    break;
+                case 1163:
+                    tile = 69;
+                    break;
+                case 1228:
+                    tile = 70;
+                    break;
+                case 324: /* RED START */
+                    tile = 71;
+                    break;
+                case 402:
+                    tile = 72;
+                    break;
+                case 502:
+                    tile = 73;
+                    break;
+                case 316: /* RED SAFETY */
+                    tile = 74;
+                    break;
+                case 394:
+                    tile = 75;
+                    break;
+                case 494:
+                    tile = 76;
+                    break;
+                case 551:
+                    tile = 77;
+                    break;
+                case 661:
+                    tile = 78;
+                    break;
+                case 819: /* RED HOME*/
+                    tile = 79;
+                    break;
+                case 821:
+                    tile = 80;
+                    break;
+                case 823:
+                    tile = 81;
+                    break;
+                case 524: /* BLUE START */
+                    tile = 82;
+                    break;
+                case 526:
+                    tile = 83;
+                    break;
+                case 528:
+                    tile = 84;
+                    break;
+                case 340: /* BLUE SAFETY */
+                    tile = 85;
+                    break;
+                case 344:
+                    tile = 86;
+                    break;
+                case 348:
+                    tile = 87;
+                    break;
+                case 352:
+                    tile = 88;
+                    break;
+                case 356:
+                    tile = 89;
+                    break;
+                case 334: /* BLUE HOME */
+                    tile = 90;
+                    break;
+                case 412:
+                    tile = 91;
+                    break;
+                case 512:
+                    tile = 92;
+                    break;
+                case 1096: /* YELLOW START */
+                    tile = 93;
+                    break;
+                case 1173:
+                    tile = 94;
+                    break;
+                case 1238:
+                    tile = 95;
+                    break;
+                case 935: /* YELLOW SAFETY */
+                    tile = 96;
+                    break;
+                case 1045:
+                    tile = 97;
+                    break;
+                case 1102:
+                    tile = 98;
+                    break;
+                case 1179:
+                    tile = 99;
+                    break;
+                case 1244:
+                    tile = 100;
+                    break;
+                case 775: /* YELLOW HOME */
+                    tile = 101;
+                    break;
+                case 777:
+                    tile = 102;
+                    break;
+                case 779:
+                    tile = 103;
+                    break;
             }
             return tile;
         }
-        bool placePawn(int currentTile) {
-            if (pawnTiles[currentTile] != -3) {
-                switch (pawnTiles[currentTile] / 3) {
-                    case 0:
-                        cout << GREEN;
-                        break;
-                    case 1:
-                        cout << RED;
-                        break;
-                    case 2:
-                        cout << BLUE;
-                        break;
-                    case 3:
-                        cout << YELLOW;
+        void prntPawn(int pawnID) {
+            switch (pawnID / 3) {
+                case 0:
+                    cout << GREEN;
                     break;
-                }
-                cout << WHITE;
-                switch(pawnTiles[currentTile] % 3) {
-                    case 0:
-                        cout << "①" << WHITE;
-                        break;
-                    case 1:
-                        cout << "②" << WHITE;
-                        break;
-                    case 2:
-                        cout << "③" << WHITE;
-                        break;
-                }
-                return false;
+                case 1:
+                    cout << RED;
+                    break;
+                case 2:
+                    cout << BLUE;
+                    break;
+                case 3:
+                    cout << YELLOW;
+                break;
             }
-            return true;
+            switch(pawnID % 3) {
+                case 0:
+                    cout << "①" << WHITE;
+                    break;
+                case 1:
+                    cout << "②" << WHITE;
+                    break;
+                case 2:
+                    cout << "③" << WHITE;
+                    break;
+            }
         }
 };
 
