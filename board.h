@@ -69,7 +69,6 @@ class Board {
         void displayBoard() {
             ifstream fin(BOARD_FILE);
             int i = 0;
-            int k = 0;
             int currentTile = 0;
             bool prnt = true;
             char buffer = '0';
@@ -212,37 +211,7 @@ class Board {
                     case 1396:
                     case 1400:
                         currentTile = getTileFromi(i);
-                        /* if (pawnTiles[currentTile] != -3) { */
-                        if (true) {
-                            switch (pawnTiles[currentTile] / 3) {
-                                case 0:
-                                    cout << GREEN;
-                                    break;
-                                case 1:
-                                    cout << RED;
-                                    break;
-                                case 2:
-                                    cout << BLUE;
-                                    break;
-                                case 3:
-                                    cout << YELLOW;
-                                    break;
-                            }
-                            cout << WHITE;
-                            switch(pawnTiles[currentTile] % 3) {
-                                case 0:
-                                    cout << "①" << WHITE;
-                                    break;
-                                case 1:
-                                    cout << "②" << WHITE;
-                                    break;
-                                case 2:
-                                    cout << "③" << WHITE;
-                                    break;
-                            }
-                            prnt = false;
-                        }
-                        ++k;
+                        prnt = placePawn(currentTile);
                         break;
                     case 316: /* RED SAFETY */
                     case 394:
@@ -446,13 +415,13 @@ class Board {
             switch (pawn[pawnNum].getStatus()) {
                 case 0:
                     pawn[pawnNum].setPos(getStart(pawnNum));
+                    pawn[pawnNum].setStatus(1);
                     landed = pawn[pawnNum].getPos() + move - 1;
                     landed = loopLanded(landed);
                 case 1:
                     safe = inSafety(pawnNum, landed, pawn[pawnNum].getPos());
                     if (!safe)
                         moved = doMove(pawnNum, landed);
-                        pawn[pawnNum].setStatus(1);
                     if (safe > 0)
                         if (!onSafeSelf(pawnNum, landed)) {
                             pawn[pawnNum].setStatus(2);
@@ -494,7 +463,7 @@ class Board {
                     }
                   
                 }
-                pawn[pawnNum].setStatus(1);
+                pawnTiles[pawn[pawnNum].getPos()] = -3;
                 pawn[pawnNum].setPos(landed);
                 pawnTiles[landed] = pawnNum;
                 moved = true;
@@ -643,28 +612,183 @@ class Board {
                     tile = 26;
                     break;
                 case 172:
-                    tile = 28;
+                    tile = 27;
                     break;
                 case 174:
-                    tile = 29;
+                    tile = 28;
                     break;
                 case 176:
-                    tile = 30;
+                    tile = 29;
                     break;
                 case 180:
-                    tile = 14;
+                    tile = 30;
                     break;
                 case 206:
-                    tile = 31;
+                    tile = 14;
                     break;
                 case 284:
-                    tile = 13;
+                    tile = 31;
                     break;
                 case 310:
+                    tile = 13;
+                    break;
+                case 364:
                     tile = 32;
+                    break;
+                case 388:
+                    tile = 12;
+                    break;
+                case 454:
+                    tile = 33;
+                    break;
+                case 488:
+                    tile = 11;
+                    break;
+                case 534:
+                    tile = 34;
+                    break;
+                case 545:
+                    tile = 10;
+                    break;
+                case 617:
+                    tile = 35;
+                    break;
+                case 653:
+                    tile = 9;
+                    break;
+                case 709:
+                    tile = 36;
+                    break;
+                case 735:
+                    tile = 8;
+                    break;
+                case 785:
+                    tile = 37;
+                    break;
+                case 811:
+                    tile = 7;
+                    break;
+                case 861:
+                    tile = 38;
+                    break;
+                case 887:
+                    tile = 6;
+                    break;
+                case 943:
+                    tile = 39;
+                    break;
+                case 979:
+                    tile = 5;
+                    break;
+                case 1053:
+                    tile = 40;
+                    break;
+                case 1064:
+                    tile = 4;
+                    break;
+                case 1110:
+                    tile = 41;
+                    break;
+                case 1121:
+                    tile = 3;
+                    break;
+                case 1187:
+                    tile = 42;
+                    break;
+                case 1198:
+                    tile = 2;
+                    break;
+                case 1252:
+                    tile = 43;
+                    break;
+                case 1263:
+                    tile = 1;
+                    break;
+                case 1341:
+                    tile = 44;
+                    break;
+                case 1354:
+                    tile = 0;
+                    break;
+                case 1358:
+                    tile = 59;
+                    break;
+                case 1362:
+                    tile = 58;
+                    break;
+                case 1364:
+                    tile = 57;
+                    break;
+                case 1366:
+                    tile = 56;
+                    break;
+                case 1368:
+                    tile = 55;
+                    break;
+                case 1370:
+                    tile = 54;
+                    break;
+                case 1374:
+                    tile = 53;
+                    break;
+                case 1378:
+                    tile = 52;
+                    break;
+                case 1382:
+                    tile = 51;
+                    break;
+                case 1386:
+                    tile = 50;
+                    break;
+                case 1390:
+                    tile = 49;
+                    break;
+                case 1392:
+                    tile = 48;
+                    break;
+                case 1394:
+                    tile = 47;
+                    break;
+                case 1396:
+                    tile = 46;
+                    break;
+                case 1400:
+                    tile = 45;
                     break;
             }
             return tile;
+        }
+        bool placePawn(int currentTile) {
+            if (pawnTiles[currentTile] != -3) {
+                switch (pawnTiles[currentTile] / 3) {
+                    case 0:
+                        cout << GREEN;
+                        break;
+                    case 1:
+                        cout << RED;
+                        break;
+                    case 2:
+                        cout << BLUE;
+                        break;
+                    case 3:
+                        cout << YELLOW;
+                    break;
+                }
+                cout << WHITE;
+                switch(pawnTiles[currentTile] % 3) {
+                    case 0:
+                        cout << "①" << WHITE;
+                        break;
+                    case 1:
+                        cout << "②" << WHITE;
+                        break;
+                    case 2:
+                        cout << "③" << WHITE;
+                        break;
+                }
+                return false;
+            }
+            return true;
         }
 };
 

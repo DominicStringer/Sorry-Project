@@ -44,6 +44,12 @@ int main()
 */
     
     Board sorry;
-    sorry.displayBoard();
+    char test = '\n';
+    while (true) {
+        cout << "Moving Green Pawn 1, 1 tile forward" << endl;
+        sorry.movePawn(0,1);
+        sorry.displayBoard();
+        cin >> test;
+    }
     return 0;
 }
