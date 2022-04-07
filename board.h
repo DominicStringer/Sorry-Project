@@ -2,7 +2,8 @@
  * File Changes:
  *  Dominic - 3/1/2022
  *  Dominic - 3/22/2022
- *  Dominic - 4/4/22
+ *  Dominic - 4/4/2022
+ *  Dominic - 4/6/2022
  * 
  * Description: The Sorry Board Class with Function Declarations
  *
@@ -337,6 +338,8 @@ class Board {
                     case 310:
                     case 364:
                     case 388:
+                    case 454:
+                    case 488:
                         currentTile = getTileFromi(i);
                         /* if (pawnTiles[currentTile] != -3) { */
                         if (true) {
@@ -372,16 +375,19 @@ class Board {
                         break;
                     case 316: /* RED SAFETY */
                     case 394:
+                    case 494:
                         cout << "■";
                         prnt = false;
                         break;
                     case 324: /* RED START */
                     case 402:
+                    case 502:
                         cout << "■";
                         prnt = false;
                         break;
                     case 334: /* BLUE HOME */
                     case 412:
+                    case 512:
                         cout << "■";
                         prnt = false;
                         break;
@@ -425,6 +431,11 @@ class Board {
                     case 397:
                     case 403:
                     case 413:
+                    case 455:
+                    case 489:
+                    case 497:
+                    case 503:
+                    case 513:
                         prnt = true;
                         break;
                 }

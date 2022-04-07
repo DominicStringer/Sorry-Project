@@ -19,14 +19,17 @@ Main
 #include <iostream>
 #include <fstream>
 #include <string>
-
+/*
 #include "Intro.h"
 #include "Player.h"
+*/
+#include "board.h"
 
 using namespace std;
 
 int main()
 {
+/*
 //variables
     int players;
     Intro i;
@@ -38,6 +41,9 @@ int main()
 //player interaction
     cout << endl;
     cout << "Player 1 what do you want to do?" << endl;
+*/
     
+    Board sorry;
+    sorry.displayBoard();
     return 0;
 }
