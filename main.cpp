@@ -44,11 +44,13 @@ int main()
 */
     
     Board sorry;
-    int test = 1;
+    int move = 1;
+    int num = 0;
     while (true) {
-        sorry.movePawn(8,test);
+        sorry.movePawn(num,move);
         sorry.displayBoard();
-        cin >> test;
+        cin >> num;
+        cin >> move;
     }
     return 0;
 }

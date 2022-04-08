@@ -5,6 +5,7 @@
  *  Dominic - 4/4/2022
  *  Dominic - 4/6/2022
  *  Dominic - 4/7/2022
+ *  Dominic - 4/8/2022
  * 
  * Description: The Sorry Board Class with Function Declarations
  *
@@ -27,12 +28,15 @@ using namespace std;
 class Board {
     private:
         int boardTiles[60];
-        int pawnTiles[60];
+        int pawnTiles[104];
         Pawn pawn[12];
     public:
         Board() {
             for (int i = 0; i < 60; ++i) {
                 boardTiles[i] = 0;
+            }
+
+            for (int i = 0; i < 104; ++i) {
                 pawnTiles[i] = -3;
             }
         
@@ -40,6 +44,32 @@ class Board {
                 Pawn newPawn;
                 pawn[i] = newPawn;
             }
+
+            pawnTiles[60] = 0;
+            pawnTiles[61] = 1;
+            pawnTiles[62] = 2;
+            pawnTiles[71] = 3;
+            pawnTiles[72] = 4;
+            pawnTiles[73] = 5;
+            pawnTiles[82] = 6;
+            pawnTiles[83] = 7;
+            pawnTiles[84] = 8;
+            pawnTiles[93] = 9;
+            pawnTiles[94] = 10;
+            pawnTiles[95] = 11;
+
+            pawn[0].setPos(60);
+            pawn[1].setPos(61);
+            pawn[2].setPos(62);
+            pawn[3].setPos(71);
+            pawn[4].setPos(72);
+            pawn[5].setPos(73);
+            pawn[6].setPos(82);
+            pawn[7].setPos(83);
+            pawn[8].setPos(84);
+            pawn[9].setPos(93);
+            pawn[10].setPos(94);
+            pawn[11].setPos(95);
 
             /* 1: Slider Start
              * 2: Slider End */
@@ -73,6 +103,7 @@ class Board {
             int currentTile = 0;
             bool prnt = true;
             char buffer = '0';
+            string color = WHITE;
             while (fin.get(buffer)) {
                 /* Color Control */
                 switch (i) {
@@ -88,6 +119,7 @@ class Board {
                     case 814:
                     case 890:
                         cout << RED;
+                        color = RED;
                         break;
                     case 232:
                     case 330:
@@ -100,6 +132,7 @@ class Board {
                     case 1187:
                     case 1252:
                         cout << BLUE;
+                        color = BLUE;
                         break;
                     case 310:
                     case 388:
@@ -112,6 +145,7 @@ class Board {
                     case 1198:
                     case 1262:
                         cout << GREEN;
+                        color = GREEN;
                         break;
                     case 680:
                     case 769:
@@ -125,6 +159,7 @@ class Board {
                     case 1361:
                     case 1390:
                         cout << YELLOW;
+                        color = YELLOW;
                         break;
                     case 148:
                     case 175:
@@ -148,19 +183,17 @@ class Board {
                     case 1374:
                     case 1399:
                         cout << WHITE;
+                        color = WHITE;
                         break;
                 }
                 currentTile = getTileFromi(i);
-                if (currentTile >= 0 && currentTile < 60)
+                if (currentTile >= 0)
                 {
-                    if (pawnTiles[currentTile] != -3)
+                if (pawnTiles[currentTile] != -3)
                     {
-                        prntPawn(pawnTiles[currentTile]);
+                        prntPawn(pawnTiles[currentTile], color);
                         prnt = false;
                     }
-                }
-                else if (currentTile >= 60)
-                {
                 }
                 switch (i) {
                     case 137:
@@ -284,6 +317,8 @@ class Board {
             landed = loopLanded(landed);
             switch (pawn[pawnNum].getStatus()) {
                 case 0:
+                    cout << pawn[pawnNum].getPos() << endl;
+                    pawnTiles[pawn[pawnNum].getPos()] = -3;
                     pawn[pawnNum].setPos(getStart(pawnNum));
                     pawn[pawnNum].setStatus(1);
                     landed = pawn[pawnNum].getPos() + move - 1;
@@ -760,7 +795,7 @@ class Board {
             }
             return tile;
         }
-        void prntPawn(int pawnID) {
+        void prntPawn(int pawnID, string color) {
             switch (pawnID / 3) {
                 case 0:
                     cout << GREEN;
@@ -777,15 +812,16 @@ class Board {
             }
             switch(pawnID % 3) {
                 case 0:
-                    cout << "①" << WHITE;
+                    cout << "①";
                     break;
                 case 1:
-                    cout << "②" << WHITE;
+                    cout << "②";
                     break;
                 case 2:
-                    cout << "③" << WHITE;
+                    cout << "③";
                     break;
             }
+            cout << color;
         }
 };
 
