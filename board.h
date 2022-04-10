@@ -323,32 +323,52 @@ class Board {
                     landed = pawn[pawnNum].getPos() + move;
                     landed = loopLanded(landed);
                     safe = inSafety(pawnNum, move);
-                    cout << safe << endl;
                     if (!safe)
                         moved = doMove(pawnNum, landed);
                     if (safe > 0)
                         if (!onSelf(pawnNum, safe))
                         {
-                            pawn[pawnNum].setStatus(2);
-                            pawnTiles[pawn[pawnNum].getPos()] = -3;
-                            pawn[pawnNum].setPos(safe);
-                            pawnTiles[safe] = pawnNum;
-                            moved = true;
+                            if (safe < getSafetyPos(pawnNum) + 5)
+                            {
+                                pawn[pawnNum].setStatus(2);
+                                pawnTiles[pawn[pawnNum].getPos()] = -3;
+                                pawn[pawnNum].setPos(safe);
+                                pawnTiles[safe] = pawnNum;
+                                moved = true;
+                            }
+                            else
+                            {
+                                pawn[pawnNum].setStatus(3);
+                                pawnTiles[pawn[pawnNum].getPos()] = -3;
+                                pawn[pawnNum].setPos(getHomePos(pawnNum));
+                                pawnTiles[getHomePos(pawnNum)] = pawnNum;
+                                moved = true;
+                            }
                         }
                     break;
                 case 2:
                     landed = pawn[pawnNum].getPos() + move;
-                    if (landed < getSafetyPos(pawnNum) + 5 && !onSelf(pawnNum, landed)) {
+                    if (landed < getSafetyPos(pawnNum)) 
+                    {
+                        landed = getSafety(pawnNum) - (getSafetyPos(pawnNum) - 1) + landed;
+                        landed = loopLanded(landed);
+                        moved = doMove(pawnNum, landed);
+                        if (move)
+                        {
+                            pawn[pawnNum].setStatus(1);
+                        }
+                    }
+                    else if (landed < getSafetyPos(pawnNum) + 5 && !onSelf(pawnNum, landed))
+                    {
                         moved = doMove(pawnNum, landed);
                     }
-                    else if (landed < 0) {
-                        /* Backed Out */
+                    else if (landed == getSafetyPos(pawnNum) + 5)
+                    {
+                        pawn[pawnNum].setStatus(3);
+                        pawnTiles[pawn[pawnNum].getPos()] = -3;
+                        pawn[pawnNum].setPos(getHomePos(pawnNum));
+                        pawnTiles[getHomePos(pawnNum)] = pawnNum;
                     }
-                    else if (landed == getSafetyPos(pawnNum) + 5) {
-                        /* Reached End */
-                    }
-                    break;
-                case 3:
                     break;
             }
             return moved;
@@ -414,20 +434,35 @@ class Board {
         
         int inSafety(int pawnNum, int move) {
             int safety = getSafety(pawnNum);
-            int landed = pawn[pawnNum].getPos() + move;
-            landed = loopLanded(landed);
             int current = pawn[pawnNum].getPos();
+            int landed = 0;
 
-            if (landed - current < 0)
+            while (move != 0)
             {
-                current -= 60;
+                if (current == safety && move > 0)
+                {
+                    if (move < 7)
+                    {
+                        landed = move + getSafetyPos(pawnNum) - 1;
+                    }
+                    else
+                    {
+                        landed = -1;
+                    }
+                }
+                if (move > 0)
+                {
+                    ++current;
+                    current = loopLanded(current);
+                    --move;
+                }
+                else
+                {
+                    --current;
+                    ++move;
+                }
             }
-            if (landed > safety && current <= safety) {
-                if (landed < safety + 5)
-                    return (landed - safety - 1) + getSafetyPos(pawnNum);
-                return -1;
-            }
-            return 0;
+            return landed;
         }
         
         int loopLanded(int landed) {
@@ -519,9 +554,11 @@ class Board {
             return pos;
         }
 
-        int getSafetyPos(int pawnNum) {
+        int getSafetyPos(int pawnNum) 
+        {
             int pos = -1;
-            switch (pawnNum / 3) {
+            switch (pawnNum / 3) 
+            {
                 case 0:
                     pos = 63;
                     break;
@@ -532,7 +569,52 @@ class Board {
                     pos = 85;
                     break;
                 case 3:
-                    pos = 86;
+                    pos = 96;
+                    break;
+            }
+            return pos;
+        }
+
+        int getHomePos(int pawnNum) 
+        {
+            int pos = -1;
+            switch (pawnNum)
+            {
+                case 0:
+                    pos = 68;
+                    break;
+                case 1:
+                    pos = 69;
+                    break;
+                case 2:
+                    pos = 70;
+                    break;
+                case 3:
+                    pos = 79;
+                    break;
+                case 4:
+                    pos = 80;
+                    break;
+                case 5:
+                    pos = 81;
+                    break;
+                case 6:
+                    pos = 90;
+                    break;
+                case 7:
+                    pos = 91;
+                    break;
+                case 8:
+                    pos = 92;
+                    break;
+                case 9:
+                    pos = 101;
+                    break;
+                case 10:
+                    pos = 102;
+                    break;
+                case 11:
+                    pos = 103;
                     break;
             }
             return pos;
