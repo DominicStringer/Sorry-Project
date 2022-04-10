@@ -6,6 +6,8 @@
  *  Dominic - 4/6/2022
  *  Dominic - 4/7/2022
  *  Dominic - 4/8/2022
+ *  Dominic - 4/9/2022
+ *  Dominic - 4/10/2022
  * 
  * Description: The Sorry Board Class with Function Declarations
  *
@@ -43,37 +45,13 @@ class Board {
             for (int i = 0; i < 12; ++i) {
                 Pawn newPawn;
                 pawn[i] = newPawn;
+                pawnTiles[getStartingPos(i)] = i;
+                pawn[i].setPos(getStartingPos(i));
             }
-
-            pawnTiles[60] = 0;
-            pawnTiles[61] = 1;
-            pawnTiles[62] = 2;
-            pawnTiles[71] = 3;
-            pawnTiles[72] = 4;
-            pawnTiles[73] = 5;
-            pawnTiles[82] = 6;
-            pawnTiles[83] = 7;
-            pawnTiles[84] = 8;
-            pawnTiles[93] = 9;
-            pawnTiles[94] = 10;
-            pawnTiles[95] = 11;
-
-            pawn[0].setPos(60);
-            pawn[1].setPos(61);
-            pawn[2].setPos(62);
-            pawn[3].setPos(71);
-            pawn[4].setPos(72);
-            pawn[5].setPos(73);
-            pawn[6].setPos(82);
-            pawn[7].setPos(83);
-            pawn[8].setPos(84);
-            pawn[9].setPos(93);
-            pawn[10].setPos(94);
-            pawn[11].setPos(95);
 
             /* 1: Slider Start
              * 2: Slider End */
-        
+
             boardTiles[1] = 1;
             boardTiles[4] = 2;
             boardTiles[9] = 1;
@@ -310,39 +288,64 @@ class Board {
             cout << endl;
             fin.close();
         }
-        bool movePawn(int pawnNum, int move) {
+
+        bool isWon(int playerNum)
+        {
+            if (pawn[(playerNum - 1) * 3].getStatus() == 3 &&
+                pawn[((playerNum - 1) * 3) + 1].getStatus() == 3 &&
+                pawn[((playerNum - 1) * 3) + 2].getStatus() == 3)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        bool movePawn(int pawnNum, int move)
+        {
             bool moved = false;
-            int landed =  pawn[pawnNum].getPos() + move;
             int safe = 0;
-            landed = loopLanded(landed);
-            switch (pawn[pawnNum].getStatus()) {
+            int landed = 0;
+            switch (pawn[pawnNum].getStatus()) 
+                {
                 case 0:
-                    cout << pawn[pawnNum].getPos() << endl;
-                    pawnTiles[pawn[pawnNum].getPos()] = -3;
-                    pawn[pawnNum].setPos(getStart(pawnNum));
-                    pawn[pawnNum].setStatus(1);
-                    landed = pawn[pawnNum].getPos() + move - 1;
-                    landed = loopLanded(landed);
+                    landed = getStart(pawnNum) + move - 1;
+                    if (move > 0)
+                    {
+                        landed = loopLanded(landed);
+                        moved = doMove(pawnNum, landed);
+                        if (moved)
+                        {
+                            pawn[pawnNum].setStatus(1);
+                        }
+                    }
+                break;
                 case 1:
-                    safe = inSafety(pawnNum, landed, pawn[pawnNum].getPos());
+                    landed = pawn[pawnNum].getPos() + move;
+                    landed = loopLanded(landed);
+                    safe = inSafety(pawnNum, move);
+                    cout << safe << endl;
                     if (!safe)
                         moved = doMove(pawnNum, landed);
                     if (safe > 0)
-                        if (!onSafeSelf(pawnNum, landed)) {
+                        if (!onSelf(pawnNum, safe))
+                        {
                             pawn[pawnNum].setStatus(2);
+                            pawnTiles[pawn[pawnNum].getPos()] = -3;
                             pawn[pawnNum].setPos(safe);
+                            pawnTiles[safe] = pawnNum;
                             moved = true;
                         }
                     break;
                 case 2:
-                    if (landed < 5 && !onSafeSelf(pawnNum, landed)) {
-                        /* Moved Forward */
+                    landed = pawn[pawnNum].getPos() + move;
+                    if (landed < getSafetyPos(pawnNum) + 5 && !onSelf(pawnNum, landed)) {
+                        moved = doMove(pawnNum, landed);
                     }
                     else if (landed < 0) {
-                        /* Backed out */
+                        /* Backed Out */
                     }
-                    else if (landed == 5) {
-                        /* Reached end */
+                    else if (landed == getSafetyPos(pawnNum) + 5) {
+                        /* Reached End */
                     }
                     break;
                 case 3:
@@ -355,6 +358,8 @@ class Board {
             if (!onSelf(pawnNum, landed)) {
                 if (onEnemy(pawnNum, landed)) {
                     pawn[pawnTiles[landed]].setStatus(0);
+                    pawn[pawnTiles[landed]].setPos(getStartingPos(pawnTiles[landed]));
+                    pawnTiles[getStartingPos(pawnTiles[landed])] = pawnTiles[landed];
                     pawnTiles[landed] = -3;
                 }
                 if (onSlider(landed)) {
@@ -373,31 +378,8 @@ class Board {
                 pawnTiles[landed] = pawnNum;
                 moved = true;
             }
+            cout << moved << endl;
             return moved;
-        }
-        
-        bool onSafeSelf(int pawnNum, int landed) {
-            switch (pawnNum % 3) {
-                case 0:
-                    if (pawn[pawnNum + 1].getStatus() == 2 && pawn[pawnNum + 1].getPos() == pawn[pawnNum].getPos())
-                        return 1;
-                    else if (pawn[pawnNum + 2].getStatus() == 2 && pawn[pawnNum + 2].getPos() == pawn[pawnNum].getPos())
-                        return 1;
-                    break;
-                case 1:
-                    if (pawn[pawnNum - 1].getStatus() == 2 && pawn[pawnNum - 1].getPos() == pawn[pawnNum].getPos())
-                        return 1;
-                    else if (pawn[pawnNum + 1].getStatus() == 2 && pawn[pawnNum + 1].getPos() == pawn[pawnNum].getPos())
-                        return 1;
-                    break;
-                case 2:
-                    if (pawn[pawnNum - 2].getStatus() == 2 && pawn[pawnNum - 2].getPos() == pawn[pawnNum].getPos())
-                        return 1;
-                    else if (pawn[pawnNum - 1].getStatus() == 2 && pawn[pawnNum - 1].getPos() == pawn[pawnNum].getPos())
-                        return 1;
-                    break;
-            }
-            return 0;
         }
         
         bool onEnemy(int pawnNum, int landed) {
@@ -413,8 +395,13 @@ class Board {
         }
 
         bool onSlider(int landed) {
-            if (boardTiles[landed] == 1)
-                return 1;
+            if (landed < 60)
+            {
+                if (boardTiles[landed] == 1)
+                    {
+                    return 1;
+                    }
+            }
             return 0;    
         }
         
@@ -424,11 +411,19 @@ class Board {
             return 0;
         }
         
-        int inSafety(int playerNum, int landed, int current) {
-            int safety = getSafety(playerNum);
-            if (landed > safety && current < safety) {
+        int inSafety(int pawnNum, int move) {
+            int safety = getSafety(pawnNum);
+            int landed = pawn[pawnNum].getPos() + move;
+            landed = loopLanded(landed);
+            int current = pawn[pawnNum].getPos();
+
+            if (landed - current < 0)
+            {
+                current -= 60;
+            }
+            if (landed > safety && current <= safety) {
                 if (landed < safety + 5)
-                    return (safety + 5) - landed;
+                    return (landed - safety - 1) + getSafetyPos(pawnNum);
                 return -1;
             }
             return 0;
@@ -437,12 +432,14 @@ class Board {
         int loopLanded(int landed) {
             if (landed > 59)
                 landed -= 60;
+            if (landed < 0)
+                landed += 60;
             return landed;
         }
         
-        int getSafety(int playerNum) {
+        int getSafety(int pawnNum) {
             int safety = 0;
-            switch(playerNum / 3) {
+            switch(pawnNum / 3) {
                 case 0:
                     safety = 2;
                     break;
@@ -459,9 +456,9 @@ class Board {
             return safety;
         }
         
-        int getStart(int playerNum) {
+        int getStart(int pawnNum) {
             int start = 0;
-            switch (playerNum / 3) {
+            switch (pawnNum / 3) {
                 case 0:
                     start = 4;
                     break;
@@ -477,6 +474,69 @@ class Board {
             }
             return start;
         }
+
+        int getStartingPos(int pawnNum) {
+            int pos = -1;
+            switch (pawnNum) {
+            case 0:
+                pos = 60;
+                break;
+            case 1:
+                pos = 61;
+                break;
+            case 2:
+                pos = 62;
+                break;
+            case 3:
+                pos = 71;
+                break;
+            case 4:
+                pos = 72;
+                break;
+            case 5:
+                pos = 73;
+                break;
+            case 6:
+                pos = 82;
+                break;
+            case 7:
+                pos = 83;
+                break;
+            case 8:
+                pos = 84;
+                break;
+            case 9:
+                pos = 93;
+                break;
+            case 10:
+                pos = 94;
+                break;
+            case 11:
+                pos = 95;
+                break;
+            }
+            return pos;
+        }
+
+        int getSafetyPos(int pawnNum) {
+            int pos = -1;
+            switch (pawnNum / 3) {
+                case 0:
+                    pos = 63;
+                    break;
+                case 1:
+                    pos = 74;
+                    break;
+                case 2:
+                    pos = 85;
+                    break;
+                case 3:
+                    pos = 86;
+                    break;
+            }
+            return pos;
+        }
+
         int getTileFromi(int i) {
             int tile = -1;
             switch (i) {
@@ -727,28 +787,28 @@ class Board {
                     tile = 81;
                     break;
                 case 524: /* BLUE START */
-                    tile = 82;
+                    tile = 84;
                     break;
                 case 526:
                     tile = 83;
                     break;
                 case 528:
-                    tile = 84;
+                    tile = 82;
                     break;
                 case 340: /* BLUE SAFETY */
-                    tile = 85;
+                    tile = 89;
                     break;
                 case 344:
-                    tile = 86;
+                    tile = 88;
                     break;
                 case 348:
                     tile = 87;
                     break;
                 case 352:
-                    tile = 88;
+                    tile = 86;
                     break;
                 case 356:
-                    tile = 89;
+                    tile = 85;
                     break;
                 case 334: /* BLUE HOME */
                     tile = 90;
@@ -760,28 +820,28 @@ class Board {
                     tile = 92;
                     break;
                 case 1096: /* YELLOW START */
-                    tile = 93;
+                    tile = 95;
                     break;
                 case 1173:
                     tile = 94;
                     break;
                 case 1238:
-                    tile = 95;
+                    tile = 93;
                     break;
                 case 935: /* YELLOW SAFETY */
-                    tile = 96;
+                    tile = 100;
                     break;
                 case 1045:
-                    tile = 97;
+                    tile = 99;
                     break;
                 case 1102:
                     tile = 98;
                     break;
                 case 1179:
-                    tile = 99;
+                    tile = 97;
                     break;
                 case 1244:
-                    tile = 100;
+                    tile = 96;
                     break;
                 case 775: /* YELLOW HOME */
                     tile = 101;
