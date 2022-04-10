@@ -108,7 +108,7 @@ int cardSelection()
             {
                 return -2;
             }
-        }
+        } while(choice != 1 && choice != 2);
     }
     
     else if(num >= 38 && num <= 41)
