@@ -328,7 +328,7 @@ class Board {
             bool moved = false;
             if (pawn[swappingPawn].getStatus() == 1 && pawn[swappedPawn].getStatus() == 1)
             {
-                bufferPos = pawn[swappingPawn].getPos();
+                int bufferPos = pawn[swappingPawn].getPos();
                 pawn[swappingPawn].setPos(pawn[swappedPawn].getPos());
                 pawn[swappedPawn].setPos(bufferPos);
                 pawnTiles[pawn[swappingPawn].getPos()] = swappingPawn;
@@ -341,12 +341,12 @@ class Board {
         bool sorry(int sorryPawn, int removedPawn)
         {
             bool moved = false;
-            if (pawn[sorryPawn].getStatus() == 0 && pawn[removedPawn].getStatus == 1)
+            if (pawn[sorryPawn].getStatus() == 0 && pawn[removedPawn].getStatus() == 1)
             {
-                pawnTiles[[sorryPawn].getPos()] = -3;
+                pawnTiles[pawn[sorryPawn].getPos()] = -3;
                 pawn[sorryPawn].setPos(pawn[removedPawn].getPos());
                 pawn[removedPawn].setPos(getStartingPos(removedPawn));
-                pawnTiles[sorryPawn].getPos()] = sorryPawn;
+                pawnTiles[pawn[sorryPawn].getPos()] = sorryPawn;
                 pawnTiles[getStartingPos(removedPawn)] = removedPawn;
                 moved = true;
             }
