@@ -323,6 +323,36 @@ class Board {
             return false;
         }
 
+        bool swap(int swappingPawn, int swappedPawn)
+        {
+            bool moved = false;
+            if (pawn[swappingPawn].getStatus() == 1 && pawn[swappedPawn].getStatus() == 1)
+            {
+                bufferPos = pawn[swappingPawn].getPos();
+                pawn[swappingPawn].setPos(pawn[swappedPawn].getPos());
+                pawn[swappedPawn].setPos(bufferPos);
+                pawnTiles[pawn[swappingPawn].getPos()] = swappingPawn;
+                pawnTiles[pawn[swappedPawn].getPos()] = swappedPawn;
+                moved = true;
+            }
+            return moved;
+        }
+
+        bool sorry(int sorryPawn, int removedPawn)
+        {
+            bool moved = false;
+            if (pawn[sorryPawn].getStatus() == 0 && pawn[removedPawn].getStatus == 1)
+            {
+                pawnTiles[[sorryPawn].getPos()] = -3;
+                pawn[sorryPawn].setPos(pawn[removedPawn].getPos());
+                pawn[removedPawn].setPos(getStartingPos(removedPawn));
+                pawnTiles[sorryPawn].getPos()] = sorryPawn;
+                pawnTiles[getStartingPos(removedPawn)] = removedPawn;
+                moved = true;
+            }
+            return moved;
+        }
+
         bool movePawn(int pawnNum, int move)
         {
             bool moved = false;
