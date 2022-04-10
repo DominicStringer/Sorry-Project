@@ -7,7 +7,7 @@ Connor Rajotte - 4/8/2022 - Added board visibility
 Description: File for introduction
 
 List of Contents:
-Explanation function
+Explanation class
 Intro class
 
 *******************************************************************************/
@@ -18,17 +18,22 @@ Intro class
 
 using namespace std;
 
-char explanation()
+class Explanation
 {
-    char playGame;
-    
-    cout << "Welcome to the game of Sorry!" << endl;
-    cout << "If you haven't played the game yet or would like to view the rules, press 'y'" << endl;
-    cout << "Otherwise, press 'n'" << endl;
-    cin >> playGame;
-    
-    return playGame;
-}
+    private:
+        char playGame;
+    public:
+        char display()
+        {
+            cout << "Welcome to the game of Sorry!" << endl;
+            cout << "If you haven't played the game yet or would like to view the rules, press 'y'" << endl;
+            cout << "Otherwise, press 'n'" << endl;
+            cin >> playGame;
+            
+            return playGame;
+        }
+        
+};
 
 class Intro
 {
@@ -42,8 +47,9 @@ void Intro::intro()
     char str;
     string error = "There was an error in the file.";
     char playGame;
+    Explanation e;
     
-    playGame = explanation();
+    playGame = e.display();
     
 /*error checking*/
     while(playGame != 'y' && playGame != 'n')

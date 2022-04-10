@@ -69,6 +69,8 @@ int main()
     int split1;
     int split2;
     
+    bool moveStart;
+    
     bool win1 = false;
     bool win2 = false;
     bool win3 = false;
@@ -88,6 +90,7 @@ int main()
         
         card = cardSelection();
         
+        
         if(card == 13)
         {
             cout << "Player 1 select your second pawn: ";
@@ -98,9 +101,10 @@ int main()
             cin >> split2;
             while((split1 + split2) != 7)
             {
-                cout << "Both pawn movements must equal seven: ";
+                cout << "Both pawn movements must equal seven" << endl;
+                cout << "How much do you want to move your first pawn? ";
                 cin >> split1;
-                cout << "Both pawn movements must equal seven: ";
+                cout << "How much do you want to move your second pawn? ";
                 cin >> split2;
             }
         }
@@ -127,19 +131,27 @@ int main()
         if(card == 13)
         {
             Sorry.movePawn(pawn, split1);
-            //Sorry.doMove(pawn, split1);
             Sorry.movePawn(pawn2, split2);
-            //Sorry.doMove(pawn2, split2);
         }
         else
         {
-            Sorry.movePawn(pawn, card);
-            //Sorry.doMove(pawn, card);
+            moveStart = Sorry.movePawn(pawn, card);
+            if(moveStart == false && card == -1)
+            {
+                cout << "You can't move backwards out of home" << endl;
+                Sorry.movePawn(pawn, 10);
+            }
+            else if(moveStart == false && card == -4)
+            {
+                cout << "You can't move backwards out of home" << endl;
+                Sorry.movePawn(pawn, 0);
+            }
         }
         
         Sorry.displayBoard();
         
 /*win checking*/
+        win1 = Sorry.isWon(1);
         if(win1 == true)
         {
             break;
@@ -164,9 +176,10 @@ int main()
             cin >> split2;
             while((split1 + split2) != 7)
             {
-                cout << "Both pawn movements must equal seven: ";
+                cout << "Both pawn movements must equal seven" << endl;
+                cout << "How much do you want to move your first pawn? ";
                 cin >> split1;
-                cout << "Both pawn movements must equal seven: ";
+                cout << "How much do you want to move your second pawn? ";
                 cin >> split2;
             }
         }
@@ -193,18 +206,26 @@ int main()
         if(card == 13)
         {
             Sorry.movePawn(pawn, split1);
-            //Sorry.doMove(pawn, split1);
             Sorry.movePawn(pawn2, split2);
-            //Sorry.doMove(pawn2, split2);
         }
         else
         {
-            Sorry.movePawn(pawn, card);
-            //Sorry.doMove(pawn, card);
+            moveStart = Sorry.movePawn(pawn, card);
+            if(moveStart == false && card == -1)
+            {
+                cout << "You can't move backwards out of home" << endl;
+                Sorry.movePawn(pawn, 10);
+            }
+            else if(moveStart == false && card == -4)
+            {
+                cout << "You can't move backwards out of home" << endl;
+                Sorry.movePawn(pawn, 0);
+            }
         }
         Sorry.displayBoard();
         
 /*win checking*/
+        win2 = Sorry.isWon(2);
         if(win2 == true)
         {
             break;
@@ -231,9 +252,10 @@ int main()
                 cin >> split2;
                 while((split1 + split2) != 7)
                 {
-                    cout << "Both pawn movements must equal seven: ";
+                    cout << "Both pawn movements must equal seven" << endl;
+                    cout << "How much do you want to move your first pawn? ";
                     cin >> split1;
-                    cout << "Both pawn movements must equal seven: ";
+                    cout << "How much do you want to move your second pawn? ";
                     cin >> split2;
                 }
             }
@@ -260,18 +282,26 @@ int main()
             if(card == 13)
             {
                 Sorry.movePawn(pawn, split1);
-                //Sorry.doMove(pawn, split1);
                 Sorry.movePawn(pawn2, split2);
-                //Sorry.doMove(pawn2, split2);
             }
             else
             {
-                Sorry.movePawn(pawn, card);
-                //Sorry.doMove(pawn, card);
+                moveStart = Sorry.movePawn(pawn, card);
+                if(moveStart == false && card == -1)
+                {
+                    cout << "You can't move backwards out of home" << endl;
+                    Sorry.movePawn(pawn, 10);
+                }
+                else if(moveStart == false && card == -4)
+                {
+                    cout << "You can't move backwards out of home" << endl;
+                    Sorry.movePawn(pawn, 0);
+                }
             }
             Sorry.displayBoard();
             
 /*win checking*/
+            win3 = Sorry.isWon(3);
             if(win3 == true)
             {
                 break;
@@ -298,9 +328,10 @@ int main()
                     cin >> split2;
                     while((split1 + split2) != 7)
                     {
-                        cout << "Both pawn movements must equal seven: ";
+                        cout << "Both pawn movements must equal seven" << endl;
+                        cout << "How much do you want to move your first pawn? ";
                         cin >> split1;
-                        cout << "Both pawn movements must equal seven: ";
+                        cout << "How much do you want to move your second pawn? ";
                         cin >> split2;
                     }
                 }
@@ -327,18 +358,26 @@ int main()
                 if(card == 13)
                 {
                     Sorry.movePawn(pawn, split1);
-                    //Sorry.doMove(pawn, split1);
                     Sorry.movePawn(pawn2, split2);
-                    //Sorry.doMove(pawn2, split2);
                 }
                 else
                 {
-                    Sorry.movePawn(pawn, card);
-                    //Sorry.doMove(pawn, card);
+                    moveStart = Sorry.movePawn(pawn, card);
+                    if(moveStart == false && card == -1)
+                    {
+                        cout << "You can't move backwards out of home" << endl;
+                        Sorry.movePawn(pawn, 10);
+                    }
+                    else if(moveStart == false && card == -4)
+                    {
+                        cout << "You can't move backwards out of home" << endl;
+                        Sorry.movePawn(pawn, 0);
+                    }
                 }
                 Sorry.displayBoard();
                 
 /*win checking*/
+                win4 = Sorry.isWon(4);
                 if(win4 == true)
                 {
                     break;
@@ -367,5 +406,4 @@ int main()
         four.winCheck();
         four.winDisplay();
     }
-    
 }

@@ -65,6 +65,8 @@ int Player::setOrder(int playerNum)
     string name;
     int age;
     
+    Board Sorry;
+    
     playerNum = players;
     
 //*error checking*/
@@ -75,6 +77,8 @@ int Player::setOrder(int playerNum)
         cin.ignore(256, '\n');
         cin >> players;
     } while(cin.fail() || (players > 4 || players < 2));
+    
+    Sorry.displayBoard();
 /*players*/
     Player one;
     Player two;
@@ -90,7 +94,7 @@ int Player::setOrder(int playerNum)
     cin >> name;
     
 /*error checking*/
-    for(int x = 0; x < (int)name.length(); x++)
+    for(int x = 0; x < name.length(); x++)
     {
         while(isdigit(name[x]) == true)                     /*new stuffs*/
         {
@@ -99,6 +103,8 @@ int Player::setOrder(int playerNum)
         }
     }
     one.setName(name);
+    
+    Sorry.displayBoard();
     
 /*error checking*/
     do
@@ -110,13 +116,16 @@ int Player::setOrder(int playerNum)
     } while(age < 6 || age >= 80);
     one.setAge(age);
     temp1 = age;
+    
+    Sorry.displayBoard();
+    
     if(players >= 2)
     {
         cout << "Player 2 enter your name: ";
         cin >> name;
         
 /*error checking*/
-        for(int x = 0; x < (int)name.length(); x++)
+        for(int x = 0; x < name.length(); x++)
         {
             while(isdigit(name[x]) == true)                     /*new stuffs*/
             {
@@ -125,6 +134,8 @@ int Player::setOrder(int playerNum)
             }
         }
         two.setName(name);
+        
+        Sorry.displayBoard();
         
 /*error checking*/
         do
@@ -136,13 +147,16 @@ int Player::setOrder(int playerNum)
         } while(age < 6 || age >= 80);
         two.setAge(age);
         temp2 = age;
+        
+        Sorry.displayBoard();
+        
         if(players >= 3)
         {
             cout << "Player 3 enter your name: ";
             cin >> name;
             
 /*error checking*/
-            for(int x = 0; x < (int)name.length(); x++)
+            for(int x = 0; x < name.length(); x++)
             {
                 while(isdigit(name[x]) == true)                     /*new stuffs*/
                 {
@@ -151,6 +165,8 @@ int Player::setOrder(int playerNum)
                 }
             }
             three.setName(name);
+            
+            Sorry.displayBoard();
             
 /*error checking*/
             do
@@ -162,13 +178,16 @@ int Player::setOrder(int playerNum)
             } while(age < 6 || age >= 80);
             three.setAge(age);
             temp3 = age;
+            
+            Sorry.displayBoard();
+            
             if(players == 4)
             {
                 cout << "Player 4 enter your name: ";
                 cin >> name;
                 
 /*error checking*/
-                for(int x = 0; x < (int)name.length(); x++)
+                for(int x = 0; x < name.length(); x++)
                 {
                     while(isdigit(name[x]) == true)                     /*new stuffs*/
                     {
@@ -177,6 +196,8 @@ int Player::setOrder(int playerNum)
                     }
                 }
                 four.setName(name);
+                
+                Sorry.displayBoard();
                 
 /*error checking*/
                 do
@@ -188,6 +209,8 @@ int Player::setOrder(int playerNum)
                 } while(age < 6 || age >= 80);
                 four.setAge(age);
                 temp4 = age;
+                
+                Sorry.displayBoard();
             }
         }
     }

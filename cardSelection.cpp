@@ -8,9 +8,10 @@ List of Contents:
 cardSelection function
 
 *******************************************************************************/
-
 #include <iostream>
 #include <string>
+
+#include <time.h>
 
 using namespace std;
 
