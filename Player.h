@@ -90,7 +90,7 @@ int Player::setOrder(int playerNum)
     cin >> name;
     
 /*error checking*/
-    for(int x = 0; x < name.length(); x++)
+    for(int x = 0; x < (int)name.length(); x++)
     {
         while(isdigit(name[x]) == true)                     /*new stuffs*/
         {
@@ -116,7 +116,7 @@ int Player::setOrder(int playerNum)
         cin >> name;
         
 /*error checking*/
-        for(int x = 0; x < name.length(); x++)
+        for(int x = 0; x < (int)name.length(); x++)
         {
             while(isdigit(name[x]) == true)                     /*new stuffs*/
             {
@@ -142,7 +142,7 @@ int Player::setOrder(int playerNum)
             cin >> name;
             
 /*error checking*/
-            for(int x = 0; x < name.length(); x++)
+            for(int x = 0; x < (int)name.length(); x++)
             {
                 while(isdigit(name[x]) == true)                     /*new stuffs*/
                 {
@@ -168,7 +168,7 @@ int Player::setOrder(int playerNum)
                 cin >> name;
                 
 /*error checking*/
-                for(int x = 0; x < name.length(); x++)
+                for(int x = 0; x < (int)name.length(); x++)
                 {
                     while(isdigit(name[x]) == true)                     /*new stuffs*/
                     {
@@ -573,7 +573,7 @@ int Player::setOrder(int playerNum)
         {
 /*p.s. this is a joke, it is not possible to get to this*/
             cout << "Congratulations on breaking the game." << endl;
-            exit(0);
+            return -1;
         }
     }
     

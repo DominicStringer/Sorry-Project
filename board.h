@@ -368,6 +368,8 @@ class Board {
                         landed = loopLanded(landed);
                         if (onEnemy(pawnNum, landed)) {
                             pawn[pawnTiles[landed]].setStatus(0);
+                            pawn[pawnTiles[landed]].setPos(getStartingPos(pawnTiles[landed]));
+                            pawnTiles[getStartingPos(pawnTiles[landed])] = pawnTiles[landed];
                             pawnTiles[landed] = -3;
                         }
                     }
@@ -378,7 +380,6 @@ class Board {
                 pawnTiles[landed] = pawnNum;
                 moved = true;
             }
-            cout << moved << endl;
             return moved;
         }
         
