@@ -97,7 +97,18 @@ int cardSelection()
     else if(num >= 34 && num <= 37)
     {
         cout << "You drew an 11" << endl;
-        return 11;
+        do{
+            cout << "do you want to move your pawn forward 11 tiles(1) or swap with an opponent(2)";
+            cin >> choice;
+            if(choice == 1)
+            {
+                return 11;
+            }
+            else
+            {
+                return -2;
+            }
+        }
     }
     
     else if(num >= 38 && num <= 41)
