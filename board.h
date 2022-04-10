@@ -75,7 +75,7 @@ class Board {
         #define BLUE "\033[34m"
         #define RED "\033[31m"
         #define WHITE "\033[37m"
-        void displayBoard() {
+        void displayBoard(int card = 0) {
             ifstream fin(BOARD_FILE);
             int i = 0;
             int currentTile = 0;
@@ -164,6 +164,29 @@ class Board {
                         color = WHITE;
                         break;
                 }
+
+                /* Display Cards */
+                switch (i)
+                {
+                    case 193:
+                        prntCardRow(card, 1);
+                        prnt = false;
+                        break;
+                    case 297:
+                        prntCardRow(card, 2);
+                        prnt = false;
+                        break;
+                    case 375:
+                        prntCardRow(card, 3);
+                        prnt = false;
+                        break;
+                    case 196:
+                    case 300:
+                    case 378:
+                        prnt = true;
+                        break;
+                }
+
                 currentTile = getTileFromi(i);
                 if (currentTile >= 0)
                 {
@@ -965,6 +988,108 @@ class Board {
                     break;
             }
             cout << color;
+        }
+        void prntCardRow(int cardID, int rowNum)
+        {
+            if (rowNum == 1)
+            {
+                switch (cardID)
+                {
+                    case 0:
+                        cout << "   ";
+                        break;
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 11:
+                    case 12:
+                        cout << " f ";
+                        break;
+                    case -4:
+                        cout << " b ";
+                        break;
+                    case 14:
+                        cout << " s ";
+                        break;  
+                }
+            }
+            else if (rowNum == 2)
+            {
+                switch(cardID)
+                {
+                    case 0:
+                        cout << "   ";
+                        break;
+                    case 1:
+                        cout << " 1 ";
+                        break;
+                    case 2:
+                        cout << " 2 ";
+                        break;
+                    case 3:
+                        cout << " 3 ";
+                        break;
+                    case -4:
+                        cout << " 4 ";
+                        break;
+                    case 5:
+                        cout << " 5 ";
+                        break;
+                    case 7:
+                        cout << " 7 ";
+                        break;
+                    case 8:
+                        cout << " 8 ";
+                        break;
+                    case 10:
+                        cout << "1 0";
+                        break;
+                    case 11:
+                        cout << "1 1";
+                        break;
+                    case 12:
+                        cout << "1 2";
+                        break;
+                    case 14:
+                        cout << " s ";
+                        break;
+                }
+            }
+            else if (rowNum == 3)
+            {
+                switch (cardID)
+                {
+                    case 0:
+                        cout << "   ";
+                        break;
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 5:
+                    case 8:
+                    case 12:
+                        cout << " f ";
+                        break;
+                    case -4:
+                        cout << " b ";
+                        break;
+                    case 7:
+                        cout << "s p";
+                        break;
+                    case 10:
+                        cout << "b 1";
+                        break;
+                    case 11:
+                        cout << "s w";
+                        break;
+                    case 14:
+                        cout << " s ";
+                }
+            }
         }
 };
 
