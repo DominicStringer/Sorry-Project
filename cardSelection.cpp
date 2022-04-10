@@ -20,7 +20,7 @@ int cardSelection()
     int num;
     int choice;
     srand(time(NULL));
-    num = rand()%41+1;
+    num = rand()%45+1;
     
     if(num >= 1 && num <= 5)
     {
@@ -94,6 +94,11 @@ int cardSelection()
     else if(num >= 38 && num <= 41)
     {
         return 12;
+    }
+    
+    else if(num >= 42 && num <= 45)
+    {
+        return 14;
     }
     
     return num;
