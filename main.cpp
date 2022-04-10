@@ -68,6 +68,8 @@ int main()
     int card;
     int split1;
     int split2;
+    int swap;
+    int pawnSwap;
     
     bool moveStart;
     
@@ -90,7 +92,6 @@ int main()
         
         card = cardSelection();
         
-        
         if(card == 13)
         {
             cout << "Player 1 select your second pawn: ";
@@ -108,6 +109,20 @@ int main()
                 cin >> split2;
             }
         }
+        else if(card == 14)
+        {
+            cout << "Which player do you want to swap pawns with: ";
+            cin >> swap;
+            cout << "Which pawn do you want to swap with: ";
+            cin >> pawnSwap;
+        }
+        else if(card == -2)
+        {
+            cout << "Which player do you want to swap pawns with: ";
+            cin >> swap;
+            cout << "Which pawn do you want to swap with: ";
+            cin >> pawnSwap;
+        }
         
 /*printing out pawn movements*/
         if(card == 1)
@@ -118,6 +133,14 @@ int main()
         {
             cout << "You moved pawn " << pawn << ", " << split1 << " tiles" << endl;
             cout << "You moved pawn " << pawn2 << ", " << split2 << " tiles" << endl;
+        }
+        else if(card == 14)
+        {
+            cout << "You replaced your enemies pawn with pawn " << pawn << endl;
+        }
+        else if(card == -2)
+        {
+            cout << "You swapped your enemies pawn with pawn " << pawn << endl;
         }
         else
         {
@@ -132,6 +155,14 @@ int main()
         {
             Sorry.movePawn(pawn, split1);
             Sorry.movePawn(pawn2, split2);
+        }
+        else if(card == 14)
+        {
+            //Sorry.sorry()
+        }
+        else if(card == -2)
+        {
+            //Sorry.swap()
         }
         else
         {
@@ -183,8 +214,22 @@ int main()
                 cin >> split2;
             }
         }
+        else if(card == 14)
+        {
+            cout << "Which player do you want to swap pawns with: ";
+            cin >> swap;
+            cout << "Which pawn do you want to swap with: ";
+            cin >> pawnSwap;
+        }
+        else if(card == -2)
+        {
+            cout << "Which player do you want to swap pawns with: ";
+            cin >> swap;
+            cout << "Which pawn do you want to swap with: ";
+            cin >> pawnSwap;
+        }
         
-/*error checking*/
+/*printing out pawn movements*/
         if(card == 1)
         {
             cout << "You moved pawn " << pawn << ", " << card << " tile" << endl;
@@ -194,19 +239,35 @@ int main()
             cout << "You moved pawn " << pawn << ", " << split1 << " tiles" << endl;
             cout << "You moved pawn " << pawn2 << ", " << split2 << " tiles" << endl;
         }
+        else if(card == 14)
+        {
+            cout << "You replaced your enemies pawn with pawn " << pawn << endl;
+        }
+        else if(card == -2)
+        {
+            cout << "You swapped your enemies pawn with pawn " << pawn << endl;
+        }
         else
         {
             cout << "You moved pawn " << pawn << ", " << card << " tiles" << endl;
         }
     
-/*displaying to board*/
         pawn += 2;
         pawn2 += 2;
         
+/*moving pawns*/
         if(card == 13)
         {
             Sorry.movePawn(pawn, split1);
             Sorry.movePawn(pawn2, split2);
+        }
+        else if(card == 14)
+        {
+            //Sorry.sorry()
+        }
+        else if(card == -2)
+        {
+            //Sorry.swap()
         }
         else
         {
@@ -259,8 +320,22 @@ int main()
                     cin >> split2;
                 }
             }
+            else if(card == 14)
+            {
+                cout << "Which player do you want to swap pawns with: ";
+                cin >> swap;
+                cout << "Which pawn do you want to swap with: ";
+                cin >> pawnSwap;
+            }
+            else if(card == -2)
+            {
+                cout << "Which player do you want to swap pawns with: ";
+                cin >> swap;
+                cout << "Which pawn do you want to swap with: ";
+                cin >> pawnSwap;
+            }
             
-/*error checking*/
+/*printing out pawn movements*/
             if(card == 1)
             {
                 cout << "You moved pawn " << pawn << ", " << card << " tile" << endl;
@@ -270,19 +345,35 @@ int main()
                 cout << "You moved pawn " << pawn << ", " << split1 << " tiles" << endl;
                 cout << "You moved pawn " << pawn2 << ", " << split2 << " tiles" << endl;
             }
+            else if(card == 14)
+            {
+                cout << "You replaced your enemies pawn with pawn " << pawn << endl;
+            }
+            else if(card == -2)
+            {
+                cout << "You swapped your enemies pawn with pawn " << pawn << endl;
+            }
             else
             {
                 cout << "You moved pawn " << pawn << ", " << card << " tiles" << endl;
             }
             
-/*displaying to board*/
             pawn += 5;
             pawn2 += 5;
             
+/*moving pawns*/
             if(card == 13)
             {
                 Sorry.movePawn(pawn, split1);
                 Sorry.movePawn(pawn2, split2);
+            }
+            else if(card == 14)
+            {
+                //Sorry.sorry()
+            }
+            else if(card == -2)
+            {
+                //Sorry.swap()
             }
             else
             {
@@ -335,8 +426,22 @@ int main()
                         cin >> split2;
                     }
                 }
+                else if(card == 14)
+                {
+                    cout << "Which player do you want to swap pawns with: ";
+                    cin >> swap;
+                    cout << "Which pawn do you want to swap with: ";
+                    cin >> pawnSwap;
+                }
+                else if(card == -2)
+                {
+                    cout << "Which player do you want to swap pawns with: ";
+                    cin >> swap;
+                    cout << "Which pawn do you want to swap with: ";
+                    cin >> pawnSwap;
+                }
                 
-/*error checking*/
+/*printing out pawn movements*/
                 if(card == 1)
                 {
                     cout << "You moved pawn " << pawn << ", " << card << " tile" << endl;
@@ -346,19 +451,34 @@ int main()
                     cout << "You moved pawn " << pawn << ", " << split1 << " tiles" << endl;
                     cout << "You moved pawn " << pawn2 << ", " << split2 << " tiles" << endl;
                 }
+                else if(card == 14)
+                {
+                    cout << "You replaced your enemies pawn with pawn " << pawn << endl;
+                }
+                else if(card == -2)
+                {
+                    cout << "You swapped your enemies pawn with pawn " << pawn << endl;
+                }
                 else
                 {
                     cout << "You moved pawn " << pawn << ", " << card << " tiles" << endl;
                 }
-            
-/*displaying to board*/
                 pawn += 8;
                 pawn2 += 8;
                 
+/*moving pawns*/
                 if(card == 13)
                 {
                     Sorry.movePawn(pawn, split1);
                     Sorry.movePawn(pawn2, split2);
+                }
+                else if(card == 14)
+                {
+                    //Sorry.sorry()
+                }
+                else if(card == -2)
+                {
+                    //Sorry.swap()
                 }
                 else
                 {
