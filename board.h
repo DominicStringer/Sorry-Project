@@ -346,6 +346,7 @@ class Board {
                 pawnTiles[pawn[sorryPawn].getPos()] = -3;
                 pawn[sorryPawn].setPos(pawn[removedPawn].getPos());
                 pawn[removedPawn].setPos(getStartingPos(removedPawn));
+                pawn[removedPawn].setStatus(0);
                 pawnTiles[pawn[sorryPawn].getPos()] = sorryPawn;
                 pawnTiles[getStartingPos(removedPawn)] = removedPawn;
                 moved = true;
