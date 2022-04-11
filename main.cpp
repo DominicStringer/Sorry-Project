@@ -90,7 +90,7 @@ int main()
         card = cardSelection();
         do
         {
-            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
             {
                 Sorry.displayBoard();
                 cout << endl;
@@ -211,7 +211,7 @@ int main()
         card = cardSelection();
         do
         {
-            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
             {
                 Sorry.displayBoard();
                 cout << endl;
@@ -335,7 +335,7 @@ int main()
             card = cardSelection();
             do
             {
-                if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+                if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
                 {
                     Sorry.displayBoard();
                     cout << endl;
@@ -459,7 +459,7 @@ int main()
                 card = cardSelection();
                 do
                 {
-                    if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+                    if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
                     {
                         Sorry.displayBoard();
                         cout << endl;
