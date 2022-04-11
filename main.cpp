@@ -90,10 +90,11 @@ int main()
         card = cardSelection();
         do
         {
-            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
             {
                 cout << endl;
             }
+
             cout << "Player 1 select your pawn:" << endl << endl;
             cin.clear();
             cin.ignore(256, '\n');
@@ -210,7 +211,7 @@ int main()
         card = cardSelection();
         do
         {
-            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
             {
                 cout << endl;
             }
@@ -333,7 +334,7 @@ int main()
             card = cardSelection();
             do
             {
-                if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+                if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
                 {
                     cout << endl;
                 }
@@ -456,7 +457,7 @@ int main()
                 card = cardSelection();
                 do
                 {
-                    if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
+                    if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
                     {
                         cout << endl;
                     }
