@@ -1,15 +1,14 @@
 #include <iostream>
 #include "board.h"
+using namespace std;
 
 int main() {
-    int pawnNum = 0;
-    int move = 0;
-    Board sorry;
-    do
-    {
-        sorry.displayBoard(-4);
-        cin >> pawnNum;
-        cin >> move;
-        sorry.movePawn(pawnNum, move);
-    } while (true);
+    Board Sorry;
+    Sorry.movePawn(3,1);
+    cout << "BEFORE" << endl;
+    Sorry.displayBoard(10);
+    Sorry.sorry(0, 3);
+    cout << "AFTER" << endl;
+    Sorry.displayBoard(10);
+    return 0;
 }

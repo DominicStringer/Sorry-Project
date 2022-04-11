@@ -21,7 +21,7 @@ Main
 
 #include "Intro.h"
 #include "Player.h"
-#include "Board.h"
+#include "board.h"
 
 using namespace std;
 
