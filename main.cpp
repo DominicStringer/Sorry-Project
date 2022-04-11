@@ -175,12 +175,12 @@ int main()
         }
         else if(card == 14)
         {
-            (swap * 3) - 1 + pawn;
+            pawnSwap = ((swap - 1) * 3) + pawn - 1;
             Sorry.sorry(pawn, pawnSwap);
         }
         else if(card == -2)
         {
-            (swap * 3) - 1 + pawn;
+            pawnSwap = ((swap - 1) * 3) + pawn - 1;
             Sorry.swap(pawn, pawnSwap);
         }
         else
@@ -297,12 +297,12 @@ int main()
         }
         else if(card == 14)
         {
-            (swap * 3) - 1 + pawn;
+            pawnSwap = ((swap - 1) * 3) + pawn - 1;
             Sorry.sorry(pawn, pawnSwap);
         }
         else if(card == -2)
         {
-            (swap * 3) - 1 + pawn;
+            pawnSwap = ((swap - 1) * 3) + pawn - 1;
             Sorry.swap(pawn, pawnSwap);
         }
         else
@@ -421,12 +421,12 @@ int main()
             }
             else if(card == 14)
             {
-                (swap * 3) - 1 + pawn;
+                pawnSwap = ((swap - 1) * 3) + pawn - 1;
                 Sorry.sorry(pawn, pawnSwap);
             }
             else if(card == -2)
             {
-                (swap * 3) - 1 + pawn;
+                pawnSwap = ((swap - 1) * 3) + pawn - 1;
                 Sorry.swap(pawn, pawnSwap);
             }
             else
@@ -544,12 +544,12 @@ int main()
                 }
                 else if(card == 14)
                 {
-                    (swap * 3) - 1 + pawn;
+                    pawnSwap = ((swap - 1) * 3) + pawn - 1;
                     Sorry.sorry(pawn, pawnSwap);
                 }
                 else if(card == -2)
                 {
-                    (swap * 3) - 1 + pawn;
+                    pawnSwap = ((swap - 1) * 3) + pawn - 1;
                     Sorry.swap(pawn, pawnSwap);
                 }
                 else
