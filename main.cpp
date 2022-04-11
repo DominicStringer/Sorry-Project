@@ -21,7 +21,7 @@ Main
 
 #include "Intro.h"
 #include "Player.h"
-#include "board.h"
+#include "Board.h"
 
 using namespace std;
 
@@ -84,6 +84,7 @@ int main()
     while((win1 == false) && (win2 == false) && (win3 == false) && (win4 == false))
     {
 /*player 1*/
+        cout << "Player 1, ";
         card = cardSelection();
         do
         {
@@ -179,8 +180,7 @@ int main()
                 Sorry.movePawn(pawn, 0);
             }
         }
-        
-        Sorry.displayBoard();
+        Sorry.displayBoard(card);
         
 /*win checking*/
         win1 = Sorry.isWon(1);
@@ -190,6 +190,7 @@ int main()
         }
         
 /*player 2*/
+        cout << "Player 2, ";
         card = cardSelection();
         do
         {
@@ -286,7 +287,7 @@ int main()
                 Sorry.movePawn(pawn, 0);
             }
         }
-        Sorry.displayBoard();
+        Sorry.displayBoard(card);
         
 /*win checking*/
         win2 = Sorry.isWon(2);
@@ -298,6 +299,7 @@ int main()
         if(players == 3 || players == 4)
         {
 /*player 3*/
+            cout << "Player 3, ";
             card = cardSelection();
             do
             {
@@ -394,7 +396,7 @@ int main()
                     Sorry.movePawn(pawn, 0);
                 }
             }
-            Sorry.displayBoard();
+            Sorry.displayBoard(card);
             
 /*win checking*/
             win3 = Sorry.isWon(3);
@@ -406,6 +408,7 @@ int main()
             if(players == 4)
             {
 /*player 4*/
+                cout << "Player 4, ";
                 card = cardSelection();
                 do
                 {
@@ -501,7 +504,7 @@ int main()
                         Sorry.movePawn(pawn, 0);
                     }
                 }
-                Sorry.displayBoard();
+                Sorry.displayBoard(card);
                 
 /*win checking*/
                 win4 = Sorry.isWon(4);
