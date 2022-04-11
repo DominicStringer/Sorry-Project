@@ -43,7 +43,7 @@ int cardSelection()
     
     else if(num >= 14 && num <= 17)
     {
-        cout << "You drew a 4" << endl;
+        cout << "You drew a -4" << endl;
         return -4;
     }
     

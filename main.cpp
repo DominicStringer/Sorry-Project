@@ -86,7 +86,7 @@ int main()
     while((win1 == false) && (win2 == false) && (win3 == false) && (win4 == false))
     {
 /*player 1*/
-        cout << "Player 1, ";
+        cout << "Green player, ";
         card = cardSelection();
         do
         {
@@ -207,7 +207,7 @@ int main()
         }
         
 /*player 2*/
-        cout << "Player 2, ";
+        cout << "Red player, ";
         card = cardSelection();
         do
         {
@@ -331,7 +331,7 @@ int main()
         if(players == 3 || players == 4)
         {
 /*player 3*/
-            cout << "Player 3, ";
+            cout << "Blue player, ";
             card = cardSelection();
             do
             {
@@ -455,7 +455,7 @@ int main()
             if(players == 4)
             {
 /*player 4*/
-                cout << "Player 4, ";
+                cout << "Yellow player, ";
                 card = cardSelection();
                 do
                 {

@@ -1,20 +1,20 @@
-/*********************************
- * File Changes:
- *  Dominic - 3/1/2022
- *  Dominic - 3/22/2022
- *  Dominic - 4/4/2022
- *  Dominic - 4/6/2022
- *  Dominic - 4/7/2022
- *  Dominic - 4/8/2022
- *  Dominic - 4/9/2022
- *  Dominic - 4/10/2022
- * 
- * Description: The Sorry Board Class with Function Declarations
- *
- * List of Contents:
- *  Board Class
- *   
- *********************************/
+/******************************************************************************
+File Changes:
+Dominic - 3/1/2022
+Dominic - 3/22/2022
+Dominic - 4/4/2022
+Dominic - 4/6/2022
+Dominic - 4/7/2022
+Dominic - 4/8/2022
+Dominic - 4/9/2022
+Dominic - 4/10/2022
+
+Description: The Sorry Board Class with Function Declarations
+
+List of Contents:
+Board Class
+
+*******************************************************************************/
 
 #ifndef BOARD
 #define BOARD
@@ -27,30 +27,35 @@
 #include <string.h>
 using namespace std;
 
-class Board {
+class Board
+{
     private:
         int boardTiles[60];
         int pawnTiles[104];
         Pawn pawn[12];
     public:
-        Board() {
-            for (int i = 0; i < 60; ++i) {
+        Board()
+        {
+            for (int i = 0; i < 60; ++i)
+            {
                 boardTiles[i] = 0;
             }
 
-            for (int i = 0; i < 104; ++i) {
+            for (int i = 0; i < 104; ++i)
+            {
                 pawnTiles[i] = -3;
             }
         
-            for (int i = 0; i < 12; ++i) {
+            for (int i = 0; i < 12; ++i)
+            {
                 Pawn newPawn;
                 pawn[i] = newPawn;
                 pawnTiles[getStartingPos(i)] = i;
                 pawn[i].setPos(getStartingPos(i));
             }
 
-            /* 1: Slider Start
-             * 2: Slider End */
+/* 1: Slider Start
+* 2: Slider End */
 
             boardTiles[1] = 1;
             boardTiles[4] = 2;
@@ -75,16 +80,19 @@ class Board {
         #define BLUE "\033[34m"
         #define RED "\033[31m"
         #define WHITE "\033[37m"
-        void displayBoard(int card = 0) {
+        void displayBoard(int card = 0)
+        {
             ifstream fin(BOARD_FILE);
             int i = 0;
             int currentTile = 0;
             bool prnt = true;
             char buffer = '0';
             string color = WHITE;
-            while (fin.get(buffer)) {
-                /* Color Control */
-                switch (i) {
+            while (fin.get(buffer))
+            {
+/* Color Control */
+                switch (i)
+                {
                     case 137:
                     case 163:
                     case 210:
@@ -165,7 +173,7 @@ class Board {
                         break;
                 }
 
-                /* Display Cards */
+/* Display Cards */
                 switch (i)
                 {
                     case 193:
@@ -196,7 +204,8 @@ class Board {
                         prnt = false;
                     }
                 }
-                switch (i) {
+                switch (i)
+                {
                     case 137:
                     case 141:
                     case 143:
@@ -379,7 +388,9 @@ class Board {
                     landed = loopLanded(landed);
                     safe = inSafety(pawnNum, move);
                     if (!safe)
+                    {
                         moved = doMove(pawnNum, landed);
+                    }
                     if (safe > 0)
                         if (!onSelf(pawnNum, safe))
                         {
@@ -428,20 +439,26 @@ class Board {
             }
             return moved;
         }
-        bool doMove(int pawnNum, int landed) {
+        bool doMove(int pawnNum, int landed)
+        {
             bool moved = false;
-            if (!onSelf(pawnNum, landed)) {
-                if (onEnemy(pawnNum, landed)) {
+            if (!onSelf(pawnNum, landed))
+            {
+                if (onEnemy(pawnNum, landed))
+                {
                     pawn[pawnTiles[landed]].setStatus(0);
                     pawn[pawnTiles[landed]].setPos(getStartingPos(pawnTiles[landed]));
                     pawnTiles[getStartingPos(pawnTiles[landed])] = pawnTiles[landed];
                     pawnTiles[landed] = -3;
                 }
-                if (onSlider(landed)) {
-                    while (!onSliderEnd(landed)) {
+                if (onSlider(landed))
+                {
+                    while (!onSliderEnd(landed))
+                    {
                         landed++;
                         landed = loopLanded(landed);
-                        if (onEnemy(pawnNum, landed)) {
+                        if (onEnemy(pawnNum, landed))
+                        {
                             pawn[pawnTiles[landed]].setStatus(0);
                             pawn[pawnTiles[landed]].setPos(getStartingPos(pawnTiles[landed]));
                             pawnTiles[getStartingPos(pawnTiles[landed])] = pawnTiles[landed];
@@ -458,36 +475,47 @@ class Board {
             return moved;
         }
         
-        bool onEnemy(int pawnNum, int landed) {
+        bool onEnemy(int pawnNum, int landed)
+        {
             if (pawnTiles[landed] != -3 && pawnTiles[landed] / 3 != pawnNum / 3)
+            {
                 return 1;
+            }
             return 0;
         }
         
-        bool onSelf(int pawnNum, int landed) {
+        bool onSelf(int pawnNum, int landed)
+        {
             if (pawnNum / 3 == pawnTiles[landed] / 3)
+            {
                 return 1;
+            }
             return 0;
         }
 
-        bool onSlider(int landed) {
+        bool onSlider(int landed)
+        {
             if (landed < 60)
             {
                 if (boardTiles[landed] == 1)
                     {
-                    return 1;
+                        return 1;
                     }
             }
             return 0;    
         }
         
-        bool onSliderEnd(int landed) {
+        bool onSliderEnd(int landed)
+        {
             if (boardTiles[landed] == 2)
+            {
                 return 1;
+            }
             return 0;
         }
         
-        int inSafety(int pawnNum, int move) {
+        int inSafety(int pawnNum, int move)
+        {
             int safety = getSafety(pawnNum);
             int current = pawn[pawnNum].getPos();
             int landed = 0;
@@ -520,17 +548,24 @@ class Board {
             return landed;
         }
         
-        int loopLanded(int landed) {
+        int loopLanded(int landed)
+        {
             if (landed > 59)
+            {
                 landed -= 60;
+            }
             if (landed < 0)
+            {
                 landed += 60;
+            }
             return landed;
         }
         
-        int getSafety(int pawnNum) {
+        int getSafety(int pawnNum)
+        {
             int safety = 0;
-            switch(pawnNum / 3) {
+            switch(pawnNum / 3)
+            {
                 case 0:
                     safety = 2;
                     break;
@@ -547,9 +582,11 @@ class Board {
             return safety;
         }
         
-        int getStart(int pawnNum) {
+        int getStart(int pawnNum)
+        {
             int start = 0;
-            switch (pawnNum / 3) {
+            switch (pawnNum / 3)
+            {
                 case 0:
                     start = 4;
                     break;
@@ -566,45 +603,47 @@ class Board {
             return start;
         }
 
-        int getStartingPos(int pawnNum) {
+        int getStartingPos(int pawnNum)
+        {
             int pos = -1;
-            switch (pawnNum) {
-            case 0:
-                pos = 60;
-                break;
-            case 1:
-                pos = 61;
-                break;
-            case 2:
-                pos = 62;
-                break;
-            case 3:
-                pos = 71;
-                break;
-            case 4:
-                pos = 72;
-                break;
-            case 5:
-                pos = 73;
-                break;
-            case 6:
-                pos = 82;
-                break;
-            case 7:
-                pos = 83;
-                break;
-            case 8:
-                pos = 84;
-                break;
-            case 9:
-                pos = 93;
-                break;
-            case 10:
-                pos = 94;
-                break;
-            case 11:
-                pos = 95;
-                break;
+            switch (pawnNum)
+            {
+                case 0:
+                    pos = 60;
+                    break;
+                case 1:
+                    pos = 61;
+                    break;
+                case 2:
+                    pos = 62;
+                    break;
+                case 3:
+                    pos = 71;
+                    break;
+                case 4:
+                    pos = 72;
+                    break;
+                case 5:
+                    pos = 73;
+                    break;
+                case 6:
+                    pos = 82;
+                    break;
+                case 7:
+                    pos = 83;
+                    break;
+                case 8:
+                    pos = 84;
+                    break;
+                case 9:
+                    pos = 93;
+                    break;
+                case 10:
+                    pos = 94;
+                    break;
+                case 11:
+                    pos = 95;
+                    break;
             }
             return pos;
         }
@@ -675,9 +714,11 @@ class Board {
             return pos;
         }
 
-        int getTileFromi(int i) {
+        int getTileFromi(int i)
+        {
             int tile = -1;
-            switch (i) {
+            switch (i)
+            {
                 case 134:
                     tile = 15;
                     break;
@@ -993,8 +1034,10 @@ class Board {
             }
             return tile;
         }
-        void prntPawn(int pawnID, string color) {
-            switch (pawnID / 3) {
+        void prntPawn(int pawnID, string color)
+        {
+            switch (pawnID / 3)
+            {
                 case 0:
                     cout << GREEN;
                     break;
@@ -1035,7 +1078,6 @@ class Board {
                     case 3:
                     case 5:
                     case 7:
-                    case 13:
                     case 8:
                     case 10:
                     case -1:
@@ -1075,7 +1117,6 @@ class Board {
                         cout << " 5 ";
                         break;
                     case 7:
-                    case 13:
                         cout << " 7 ";
                         break;
                     case 8:
@@ -1116,7 +1157,6 @@ class Board {
                         cout << " b ";
                         break;
                     case 7:
-                    case 13:
                         cout << "s p";
                         break;
                     case 10:
