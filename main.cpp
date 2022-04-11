@@ -580,18 +580,22 @@ int main()
     
     if(win1 == true)
     {
+        one.setValues(1, 0, 0, 0);
         one.winDisplay();
     }
     else if(win2 == true)
     {
+        two.setValues(0, 1, 0, 0);
         two.winDisplay();
     }
     else if(win3 == true)
     {
+        three.setValues(0, 0, 1, 0);
         three.winDisplay();
     }
     else
     {
+        four.setValues(0, 0, 0, 1);
         four.winDisplay();
     }
 }
