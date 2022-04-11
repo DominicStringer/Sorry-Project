@@ -653,9 +653,9 @@ int Player::setOrder(int playerNum)
     {
         cout << endl << endl << endl;
     }
-/*timer*/
+/*timer for 4 seconds*/
     clock_t start_time = clock();
-    while (clock() < start_time + 2000000)
+    while (clock() < start_time + 4000000)
         {}
     return players;
 }

@@ -10,7 +10,7 @@ cardSelection function
 *******************************************************************************/
 #include <iostream>
 #include <string>
-#include <stdlib.h>
+
 #include <time.h>
 
 using namespace std;
@@ -57,7 +57,8 @@ int cardSelection()
         cout << "You drew a 7" << endl;
         do
         {
-            cout << "Do you want to move one pawn forward 7 tiles(1) or two pawns forward seven combined tiles(2)? ";
+            cout << "Do you want to move one pawn forward 7 tiles(1)" << endl;
+            cout << "or two pawns forward seven combined tiles(2)? " << endl << endl;
             cin >> choice;
             if(choice == 1)
             {
@@ -81,7 +82,8 @@ int cardSelection()
         cout << "You drew a 10" << endl;
         do
         {
-            cout << "do you want to move your pawn forward 10 tiles(1) or back 1 tile(2)? ";
+            cout << "do you want to move your pawn forward 10 tiles(1)" << endl;
+            cout << "or back 1 tile(2)? " << endl << endl;
             cin >> choice;
             if(choice == 1)
             {
@@ -98,7 +100,8 @@ int cardSelection()
     {
         cout << "You drew an 11" << endl;
         do{
-            cout << "do you want to move your pawn forward 11 tiles(1) or swap with an opponent(2)";
+            cout << "do you want to move your pawn forward 11 tiles(1)" << endl;
+            cout << "or swap with an opponent(2)" << endl << endl;
             cin >> choice;
             if(choice == 1)
             {
