@@ -626,8 +626,6 @@ int Player::setOrder(int playerNum)
         }
     }
     
-    cout << endl;
-    
     one.display();
     if(players >= 2)
     {
