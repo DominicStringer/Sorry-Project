@@ -82,7 +82,6 @@ int main()
     bool win3 = false;
     bool win4 = false;
     
-    cout << endl;
     
     while((win1 == false) && (win2 == false) && (win3 == false) && (win4 == false))
     {
