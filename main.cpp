@@ -580,22 +580,18 @@ int main()
     
     if(win1 == true)
     {
-        one.winCheck();
         one.winDisplay();
     }
     else if(win2 == true)
     {
-        two.winCheck();
         two.winDisplay();
     }
     else if(win3 == true)
     {
-        three.winCheck();
         three.winDisplay();
     }
     else
     {
-        four.winCheck();
         four.winDisplay();
     }
 }
