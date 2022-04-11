@@ -1035,6 +1035,7 @@ class Board {
                     case 3:
                     case 5:
                     case 7:
+                    case 13:
                     case 8:
                     case 10:
                     case -1:
@@ -1074,6 +1075,7 @@ class Board {
                         cout << " 5 ";
                         break;
                     case 7:
+                    case 13:
                         cout << " 7 ";
                         break;
                     case 8:
@@ -1114,6 +1116,7 @@ class Board {
                         cout << " b ";
                         break;
                     case 7:
+                    case 13:
                         cout << "s p";
                         break;
                     case 10:
