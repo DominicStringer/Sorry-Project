@@ -13,6 +13,8 @@ Player class
 #include <iostream>
 #include <string>
 
+#include <time.h>
+
 using namespace std;
 
 class Player
@@ -637,8 +639,24 @@ int Player::setOrder(int playerNum)
             {
                 four.display();
             }
+            else
+            {
+                cout << endl;
+            }
+        }
+        else
+        {
+            cout << endl << endl;
         }
     }
+    else
+    {
+        cout << endl << endl << endl;
+    }
+/*timer*/
+    clock_t start_time = clock();
+    while (clock() < start_time + 2000000)
+        {}
     return players;
 }
 
