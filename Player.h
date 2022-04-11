@@ -72,7 +72,9 @@ int Player::setOrder(int playerNum)
 //*error checking*/
     do
     {
+        cout << endl;
         cout << "Enter the number of players between 2 and 4: ";
+        cout << endl << endl << endl;
         cin.clear();
         cin.ignore(256, '\n');
         cin >> players;
@@ -90,7 +92,9 @@ int Player::setOrder(int playerNum)
     int temp4;
     bool check;
     
+    cout << endl;
     cout << "Player 1 enter your name: ";
+    cout << endl << endl << endl;
     cin >> name;
     
 /*error checking*/
@@ -98,7 +102,9 @@ int Player::setOrder(int playerNum)
     {
         while(isdigit(name[x]) == true)                     /*new stuffs*/
         {
+            cout << endl;
             cout << "name must not contain numbers" << endl;
+            cout << endl << endl << endl;
             cin >> name;
         }
     }
@@ -109,7 +115,9 @@ int Player::setOrder(int playerNum)
 /*error checking*/
     do
     {
+        cout << endl;
         cout << "Player 1 enter an age between 6 and 80: ";
+        cout << endl << endl << endl;
         cin.clear();
         cin.ignore(256, '\n');
         cin >> age;
@@ -121,7 +129,9 @@ int Player::setOrder(int playerNum)
     
     if(players >= 2)
     {
+        cout << endl;
         cout << "Player 2 enter your name: ";
+        cout << endl << endl << endl;
         cin >> name;
         
 /*error checking*/
@@ -129,7 +139,9 @@ int Player::setOrder(int playerNum)
         {
             while(isdigit(name[x]) == true)                     /*new stuffs*/
             {
+                cout << endl;
                 cout << "name must not contain numbers" << endl;
+                cout << endl << endl << endl;
                 cin >> name;
             }
         }
@@ -140,7 +152,9 @@ int Player::setOrder(int playerNum)
 /*error checking*/
         do
         {
+            cout << endl;
             cout << "Player 2 enter an age between 6 and 80: ";
+            cout << endl << endl << endl;
             cin.clear();
             cin.ignore(256, '\n');
             cin >> age;
@@ -152,7 +166,9 @@ int Player::setOrder(int playerNum)
         
         if(players >= 3)
         {
+            cout << endl;
             cout << "Player 3 enter your name: ";
+            cout << endl << endl << endl;
             cin >> name;
             
 /*error checking*/
@@ -160,8 +176,10 @@ int Player::setOrder(int playerNum)
             {
                 while(isdigit(name[x]) == true)                     /*new stuffs*/
                 {
+                    cout << endl;
                     cout << "name must not contain numbers" << endl;
-                cin >> name;
+                    cout << endl << endl << endl;
+                    cin >> name;
                 }
             }
             three.setName(name);
@@ -171,7 +189,9 @@ int Player::setOrder(int playerNum)
 /*error checking*/
             do
             {
+                cout << endl;
                 cout << "Player 3 enter an age between 6 and 80: ";
+                cout << endl << endl << endl;
                 cin.clear();
                 cin.ignore(256, '\n');
                 cin >> age;
@@ -183,7 +203,9 @@ int Player::setOrder(int playerNum)
             
             if(players == 4)
             {
+                cout << endl;
                 cout << "Player 4 enter your name: ";
+                cout << endl << endl << endl;
                 cin >> name;
                 
 /*error checking*/
@@ -191,7 +213,9 @@ int Player::setOrder(int playerNum)
                 {
                     while(isdigit(name[x]) == true)                     /*new stuffs*/
                     {
+                        cout << endl;
                         cout << "name must not contain numbers" << endl;
+                        cout << endl << endl << endl;
                         cin >> name;
                     }
                 }
@@ -202,7 +226,9 @@ int Player::setOrder(int playerNum)
 /*error checking*/
                 do
                 {
+                    cout << endl;
                     cout << "Player 4 enter an age between 6 and 80: ";
+                    cout << endl << endl << endl;
                     cin.clear();
                     cin.ignore(256, '\n');
                     cin >> age;
