@@ -21,7 +21,7 @@ Main
 
 #include "Intro.h"
 #include "Player.h"
-#include "Board.h"
+#include "board.h"
 
 using namespace std;
 
@@ -60,7 +60,11 @@ int main()
     
     i.intro();
     
+    Board Sorry;
+    
     players = p.setOrder(0);
+    
+    Sorry.displayBoard();
     
 /*player interaction*/
     int pawn;
@@ -78,7 +82,6 @@ int main()
     bool win3 = false;
     bool win4 = false;
     
-    Board Sorry;
     cout << endl;
     
     while((win1 == false) && (win2 == false) && (win3 == false) && (win4 == false))
@@ -88,7 +91,7 @@ int main()
         card = cardSelection();
         do
         {
-            cout << "Player 1 select your pawn:";
+            cout << "Player 1 select your pawn:" << endl << endl;
             cin.clear();
             cin.ignore(256, '\n');
             cin >> pawn;
