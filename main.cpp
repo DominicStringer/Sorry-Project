@@ -90,7 +90,7 @@ int main()
         card = cardSelection();
         do
         {
-            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
+            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
             {
                 Sorry.displayBoard();
                 cout << endl;
@@ -175,12 +175,12 @@ int main()
         }
         else if(card == 14)
         {
-            pawnSwap = ((swap - 1) * 3) + pawn - 1;
+            pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
             Sorry.sorry(pawn, pawnSwap);
         }
         else if(card == -2)
         {
-            pawnSwap = ((swap - 1) * 3) + pawn - 1;
+            pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
             Sorry.swap(pawn, pawnSwap);
         }
         else
@@ -211,7 +211,7 @@ int main()
         card = cardSelection();
         do
         {
-            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
+            if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
             {
                 Sorry.displayBoard();
                 cout << endl;
@@ -297,12 +297,12 @@ int main()
         }
         else if(card == 14)
         {
-            pawnSwap = ((swap - 1) * 3) + pawn - 1;
+            pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
             Sorry.sorry(pawn, pawnSwap);
         }
         else if(card == -2)
         {
-            pawnSwap = ((swap - 1) * 3) + pawn - 1;
+            pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
             Sorry.swap(pawn, pawnSwap);
         }
         else
@@ -335,7 +335,7 @@ int main()
             card = cardSelection();
             do
             {
-                if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
+                if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
                 {
                     Sorry.displayBoard();
                     cout << endl;
@@ -421,12 +421,12 @@ int main()
             }
             else if(card == 14)
             {
-                pawnSwap = ((swap - 1) * 3) + pawn - 1;
+                pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
                 Sorry.sorry(pawn, pawnSwap);
             }
             else if(card == -2)
             {
-                pawnSwap = ((swap - 1) * 3) + pawn - 1;
+                pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
                 Sorry.swap(pawn, pawnSwap);
             }
             else
@@ -459,7 +459,7 @@ int main()
                 card = cardSelection();
                 do
                 {
-                    if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2)
+                    if(card == 7 || card == 13 || card == 10 || card == -1 || card == 11 || card == -2 || card == 14)
                     {
                         Sorry.displayBoard();
                         cout << endl;
@@ -544,12 +544,12 @@ int main()
                 }
                 else if(card == 14)
                 {
-                    pawnSwap = ((swap - 1) * 3) + pawn - 1;
+                    pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
                     Sorry.sorry(pawn, pawnSwap);
                 }
                 else if(card == -2)
                 {
-                    pawnSwap = ((swap - 1) * 3) + pawn - 1;
+                    pawnSwap = ((swap - 1) * 3 + pawnSwap) - 1;
                     Sorry.swap(pawn, pawnSwap);
                 }
                 else
