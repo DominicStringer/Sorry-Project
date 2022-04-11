@@ -21,7 +21,7 @@ Main
 
 #include "Intro.h"
 #include "Player.h"
-#include "board.h"
+#include "Board.h"
 
 using namespace std;
 
@@ -86,7 +86,10 @@ int main()
 /*player 1*/
         do
         {
+            cout << endl;
             cout << "Player 1 select your pawn:";
+            cin.clear();
+            cin.ignore(256, '\n');
             cin >> pawn;
         } while(pawn != 1 && pawn != 2 && pawn != 3);
         
@@ -192,6 +195,8 @@ int main()
         do
         {
             cout << "Player 2 select your pawn:";
+            cin.clear();
+            cin.ignore(256, '\n');
             cin >> pawn;
         } while(pawn != 1 && pawn != 2 && pawn != 3);
         
@@ -298,6 +303,8 @@ int main()
             do
             {
                 cout << "Player 3 select your pawn:";
+                cin.clear();
+                cin.ignore(256, '\n');
                 cin >> pawn;
             } while(pawn != 1 && pawn != 2 && pawn != 3);
             
@@ -404,6 +411,8 @@ int main()
                 do
                 {
                     cout << "Player 4 select your pawn:";
+                    cin.clear();
+                    cin.ignore(256, '\n');
                     cin >> pawn;
                 } while(pawn != 1 && pawn != 2 && pawn != 3);
                 
