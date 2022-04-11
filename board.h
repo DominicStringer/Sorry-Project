@@ -1036,7 +1036,9 @@ class Board {
                     case 7:
                     case 8:
                     case 10:
+                    case -1:
                     case 11:
+                    case -2:
                     case 12:
                         cout << " f ";
                         break;
@@ -1077,9 +1079,11 @@ class Board {
                         cout << " 8 ";
                         break;
                     case 10:
+                    case -1:
                         cout << "1 0";
                         break;
                     case 11:
+                    case -2:
                         cout << "1 1";
                         break;
                     case 12:
@@ -1112,9 +1116,11 @@ class Board {
                         cout << "s p";
                         break;
                     case 10:
+                    case -1:
                         cout << "b 1";
                         break;
                     case 11:
+                    case -2:
                         cout << "s w";
                         break;
                     case 14:

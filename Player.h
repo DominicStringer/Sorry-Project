@@ -97,7 +97,7 @@ int Player::setOrder(int playerNum)
     cin >> name;
     
 /*error checking*/
-    for(int x = 0; x < name.length(); x++)
+    for(int x = 0; x < (int)name.length(); x++)
     {
         while(isdigit(name[x]) == true)                     /*new stuffs*/
         {
@@ -131,7 +131,7 @@ int Player::setOrder(int playerNum)
         cin >> name;
         
 /*error checking*/
-        for(int x = 0; x < name.length(); x++)
+        for(int x = 0; x < (int)name.length(); x++)
         {
             while(isdigit(name[x]) == true)                     /*new stuffs*/
             {
@@ -165,7 +165,7 @@ int Player::setOrder(int playerNum)
             cin >> name;
             
 /*error checking*/
-            for(int x = 0; x < name.length(); x++)
+            for(int x = 0; x < (int)name.length(); x++)
             {
                 while(isdigit(name[x]) == true)                     /*new stuffs*/
                 {
@@ -199,7 +199,7 @@ int Player::setOrder(int playerNum)
                 cin >> name;
                 
 /*error checking*/
-                for(int x = 0; x < name.length(); x++)
+                for(int x = 0; x < (int)name.length(); x++)
                 {
                     while(isdigit(name[x]) == true)                     /*new stuffs*/
                     {
@@ -613,7 +613,7 @@ int Player::setOrder(int playerNum)
             return -1;
         }
     }
-    
+
     one.display();
     if(players >= 2)
     {
@@ -625,17 +625,24 @@ int Player::setOrder(int playerNum)
             {
                 four.display();
             }
+            else
+            {
+                cout << endl;
+            }
         }
         else
         {
-            cout << endl;
+            cout << endl << endl;
         }
     }
     else
     {
-        cout << endl << endl;
+        cout << endl << endl << endl;
     }
-    cout << endl << endl << endl << endl << endl << endl << endl << endl;
+    for (int i = 0; i < 17; ++i)
+    {
+    cout << endl;
+    }
 /*timer for 4 seconds*/
     clock_t start_time = clock();
     while (clock() < start_time + 4000000);
