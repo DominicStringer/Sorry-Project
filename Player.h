@@ -92,7 +92,6 @@ int Player::setOrder(int playerNum)
     int temp2;
     int temp3;
     int temp4;
-    bool check;
     
     cout << endl;
     cout << "Player 1 enter your name: ";
