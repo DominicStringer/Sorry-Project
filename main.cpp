@@ -84,16 +84,14 @@ int main()
     while((win1 == false) && (win2 == false) && (win3 == false) && (win4 == false))
     {
 /*player 1*/
+        card = cardSelection();
         do
         {
-            cout << endl;
             cout << "Player 1 select your pawn:";
             cin.clear();
             cin.ignore(256, '\n');
             cin >> pawn;
         } while(pawn != 1 && pawn != 2 && pawn != 3);
-        
-        card = cardSelection();
         
         if(card == 13)
         {
@@ -161,11 +159,11 @@ int main()
         }
         else if(card == 14)
         {
-            //Sorry.sorry()
+            Sorry.sorry(pawn, pawnSwap);
         }
         else if(card == -2)
         {
-            //Sorry.swap()
+            Sorry.swap(pawn, pawnSwap);
         }
         else
         {
@@ -192,6 +190,7 @@ int main()
         }
         
 /*player 2*/
+        card = cardSelection();
         do
         {
             cout << "Player 2 select your pawn:";
@@ -200,7 +199,6 @@ int main()
             cin >> pawn;
         } while(pawn != 1 && pawn != 2 && pawn != 3);
         
-        card = cardSelection();
         
         if(card == 13)
         {
@@ -268,11 +266,11 @@ int main()
         }
         else if(card == 14)
         {
-            //Sorry.sorry()
+            Sorry.sorry(pawn, pawnSwap);
         }
         else if(card == -2)
         {
-            //Sorry.swap()
+            Sorry.swap(pawn, pawnSwap);
         }
         else
         {
@@ -300,6 +298,7 @@ int main()
         if(players == 3 || players == 4)
         {
 /*player 3*/
+            card = cardSelection();
             do
             {
                 cout << "Player 3 select your pawn:";
@@ -308,7 +307,6 @@ int main()
                 cin >> pawn;
             } while(pawn != 1 && pawn != 2 && pawn != 3);
             
-            card = cardSelection();
             
             if(card == 13)
             {
@@ -376,11 +374,11 @@ int main()
             }
             else if(card == 14)
             {
-                //Sorry.sorry()
+                Sorry.sorry(pawn, pawnSwap);
             }
             else if(card == -2)
             {
-                //Sorry.swap()
+                Sorry.swap(pawn, pawnSwap);
             }
             else
             {
@@ -408,6 +406,7 @@ int main()
             if(players == 4)
             {
 /*player 4*/
+                card = cardSelection();
                 do
                 {
                     cout << "Player 4 select your pawn:";
@@ -416,7 +415,6 @@ int main()
                     cin >> pawn;
                 } while(pawn != 1 && pawn != 2 && pawn != 3);
                 
-                card = cardSelection();
                 
                 if(card == 13)
                 {
@@ -483,11 +481,11 @@ int main()
                 }
                 else if(card == 14)
                 {
-                    //Sorry.sorry()
+                    Sorry.sorry(pawn, pawnSwap);
                 }
                 else if(card == -2)
                 {
-                    //Sorry.swap()
+                    Sorry.swap(pawn, pawnSwap);
                 }
                 else
                 {
