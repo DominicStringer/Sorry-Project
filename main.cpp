@@ -124,7 +124,6 @@ int main()
             cout << endl;
             cout << "Which player do you want to swap pawns with: " << endl << endl;
             cin >> swap;
-            Sorry.displayBoard(card);
             cout << endl;
             cout << "Which pawn do you want to swap with: " << endl << endl;
             cin >> pawnSwap;
@@ -135,7 +134,6 @@ int main()
             cout << endl;
             cout << "Which player do you want to swap pawns with: " << endl << endl;
             cin >> swap;
-            Sorry.displayBoard(card);
             cout << endl;
             cout << "Which pawn do you want to swap with: " << endl << endl;
             cin >> pawnSwap;
@@ -246,7 +244,6 @@ int main()
             cout << endl;
             cout << "Which player do you want to swap pawns with: " << endl << endl;
             cin >> swap;
-            Sorry.displayBoard(card);
             cout << endl;
             cout << "Which pawn do you want to swap with: " << endl << endl;
             cin >> pawnSwap;
@@ -257,7 +254,6 @@ int main()
             cout << endl;
             cout << "Which player do you want to swap pawns with: " << endl << endl;
             cin >> swap;
-            Sorry.displayBoard(card);
             cout << endl;
             cout << "Which pawn do you want to swap with: " << endl << endl;
             cin >> pawnSwap;
@@ -370,7 +366,6 @@ int main()
                 cout << endl;
                 cout << "Which player do you want to swap pawns with: " << endl << endl;
                 cin >> swap;
-                Sorry.displayBoard(card);
                 cout << endl;
                 cout << "Which pawn do you want to swap with: " << endl << endl;
                 cin >> pawnSwap;
@@ -381,7 +376,6 @@ int main()
                 cout << endl;
                 cout << "Which player do you want to swap pawns with: " << endl << endl;
                 cin >> swap;
-                Sorry.displayBoard(card);
                 cout << endl;
                 cout << "Which pawn do you want to swap with: " << endl << endl;
                 cin >> pawnSwap;
@@ -494,7 +488,6 @@ int main()
                     cout << endl;
                     cout << "Which player do you want to swap pawns with: " << endl << endl;
                     cin >> swap;
-                    Sorry.displayBoard(card);
                     cout << endl;
                     cout << "Which pawn do you want to swap with: " << endl << endl;
                     cin >> pawnSwap;
@@ -505,7 +498,6 @@ int main()
                     cout << endl;
                     cout << "Which player do you want to swap pawns with: " << endl << endl;
                     cin >> swap;
-                    Sorry.displayBoard(card);
                     cout << endl;
                     cout << "Which pawn do you want to swap with: " << endl << endl;
                     cin >> pawnSwap;
